@@ -1,14 +1,15 @@
+
 <a 
 class="playlist-card p-4 flex-col items-center group relative 
 transition-all duration-300 overflow-hidden gap-5 rounded-md shadow-lg 
 hover:shadow-xl outline-none bg-zinc-500/5 hover:bg-zinc-500/20 focus:bg-zinc-500/20">
   <article class="w-40">
-    <div class="relative group mx-auto h-40 w-full flex-none shadow-lg">
+    <div class="flex group mx-auto h-40 w-full flex-none shadow-lg items-center	justify-center">
       <slot name="logo"/>
     </div>
     <div class="pt-2">
-      <div class="font-bold block truncate">Hola amiguito</div>
-      <div class="text-gray-400 text-xs">jijijija</div>
+      <slot name="title" class="font-bold block truncate"/>
+      <slot name="description" class="text-gray-400 text-xs"/>
     </div>
   </article>
 </a>
