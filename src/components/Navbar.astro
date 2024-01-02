@@ -1,5 +1,5 @@
 ---
-import History from "../components/History.astro";
+import Songs from "./Songs.astro";
 ---
 
 <header>
@@ -9,16 +9,16 @@ import History from "../components/History.astro";
         <ul>
           <li>
             <a
-              class="flex gap-4 text-zinc-400 hover:text-zinc-100 py-3.5 px-5 font-semibold transition-all duration-300"
+              class="flex gap-4 text-zinc-400 hover:text-zinc-100 py-3.5 px-5 font-semibold transition-all duration-300" href="#home"
             >
-              Home
+            <i class="fa-solid fa-house mt-1"/>Home
             </a>
           </li>
           <li>
             <a
               class="flex gap-4 text-zinc-400 hover:text-zinc-100 py-3.5 px-5 font-semibold transition-all duration-300"
             >
-              Browse
+            <i class="fa-solid fa-globe mt-1"></i>Change Language
             </a>
           </li>
         </ul>
@@ -29,12 +29,12 @@ import History from "../components/History.astro";
             <a
               class="flex gap-4 text-zinc-400 hover:text-zinc-100 py-3.5 px-5 font-semibold transition-all duration-300"
             >
-              Recent History
+            <i class="fa-solid fa-volume-high mt-1"></i>Do you want music?
             </a>
           </li>
         </ul>
-        <ul class="pl-2">
-          <History />
+        <ul class="pl-2 pt-1">
+          <Songs />
         </ul>
       </div>
     </div>
@@ -51,10 +51,10 @@ import History from "../components/History.astro";
         <li><a>los pibardos</a></li>
         <li><a>los pibardos</a></li>
         <li><a>los pibardos</a></li>
-        <label for="check" id="close-menu" class="absolute cursor-pointer text-2xl top-5 left-5"><a>A</a></label>
+        <label for="check" id="close-menu" class="absolute cursor-pointer text-2xl top-5 left-5"><i class="fas fa-times"></i></label>
         <!-- close menu X -->
       </span>
-      <label for="check" id="open-menu" class="absolute cursor-pointer text-2xl top-5 left-5"><a>B</a></label>
+      <label for="check" id="open-menu" class="z-20 absolute cursor-pointer text-2xl top-5 left-5"><i class="fas fa-bars"></i></label>
       <!-- open menu ||| -->
     </ul>
   </nav>
@@ -78,7 +78,7 @@ import History from "../components/History.astro";
     }
     #menu li {margin-top: 40px;}
     #menu li a {padding: 10px;}
-    #open-menu , #close-menu {display: block;}
-    #check:checked ~ #menu {left: 0;}
+    #open-menu , #close-menu {display: absolute;}
+    #check:checked ~ #menu {left: 2px;}
   }
 </style>
