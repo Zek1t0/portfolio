@@ -13,3 +13,16 @@ hover:shadow-xl outline-none bg-zinc-500/5 hover:bg-zinc-500/20 focus:bg-zinc-50
     </div>
   </article>
 </a>
+<a 
+class="p-4 transition-all duration-300 overflow-hidden gap-5 rounded-md shadow-lg 
+hover:shadow-xl outline-none bg-zinc-500/5 hover:bg-zinc-500/20 focus:bg-zinc-500/20">
+  <article class="w-24 xl:w-40">
+    <div class="flex group mx-auto h-28 xl:h-40 w-full flex-none shadow-lg items-center	justify-center">
+      <slot name="logo"/>
+    </div>
+    <div class="pt-2">
+      <slot name="title"/>
+      <slot name="description"/>
+    </div>
+  </article>
+</a>
