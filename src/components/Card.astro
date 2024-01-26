@@ -1,13 +1,9 @@
 <a 
-class="p-4 transition-all duration-300 overflow-hidden gap-5 rounded-md shadow-lg 
+class="transition-all duration-300 overflow-hidden gap-5 rounded-md shadow-lg 
 hover:shadow-xl outline-none bg-zinc-500/5 hover:bg-zinc-500/20 focus:bg-zinc-500/20">
-  <article class="w-[640px] h-[305px] flex place-items-center">
-    <div class="w-[360px] h-[250px]">
-      <slot name="logo"/>
-    </div>
-    <div class="w-64 px-10">
-      <slot name="title"/>
-      <slot name="description"/>
-    </div>
+  <article class="w-[945px] h-[450px] flex place-items-center place-content-center">
+    <slot name="logo1"/>
+      <slot name="text"/>
+    <slot name="logo2"/>
   </article>
 </a>

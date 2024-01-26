@@ -1,25 +1,56 @@
 ---
 import Card from "./card.astro";
 ---
-<section class="z-10 text-white relative px-6 pt-16 bg-gradient-to-b from-gray-700 from 0% to-zinc-900 to-30%">
+
+<section
+  class="z-10 text-white relative px-6 pt-16 bg-gradient-to-b from-gray-700 from 0% to-zinc-900 to-30%"
+>
   <div class="flex">
     <h2 class="text-2xl font-bold">Projects</h2>
   </div>
   <div class="flex flex-wrap mt-6 gap-4 top-0">
     <Card>
-      <img slot="logo" src="por-que-tener-una-pagina-web-opengraph.png" class="h-full">
-      <p slot="title" class="font-bold block truncate">Proyecto 01.</p>
-      <p slot="description" class="text-gray-400 text-xs">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque mollitia sequi vero perferendis blanditiis nemo</p>
+      <div slot="logo1" class="w-[533px] h-[330px] ml-11">
+        <img src="por-que-tener-una-pagina-web-opengraph.png" class="h-full" />
+      </div>
+      <div slot="text" class="w-96 px-14 tracking-tighter">
+        <p class="font-bold block truncate text-2xl pb-px">
+          ZippyLink
+        </p>
+        <p class="text-gray-400">
+          ZippyLink offers swift and secure link shortening for seamless sharing. Trim lengthy URLs into concise, easy-to-share links. Experience quick, reliable, and efficient link management with ZippyLink – your go-to solution for streamlined online communication.
+        </p>
+      </div>
     </Card>
+    <a 
+class="transition-all duration-300 overflow-hidden gap-5 rounded-md shadow-lg 
+hover:shadow-xl outline-none bg-zinc-500/5 hover:bg-zinc-500/20 focus:bg-zinc-500/20 flex ">
+  <article class="w-[945px] h-[450px] flex place-items-center place-content-center">
+      <div slot="text" class="w-96 px-14 tracking-tighter">
+        <p class="font-bold block truncate text-2xl pb-px">
+          ZippyLink
+        </p>
+        <p class="text-gray-400">
+          ZippyLink offers swift and secure link shortening for seamless sharing. Trim lengthy URLs into concise, easy-to-share links. Experience quick, reliable, and efficient link management with ZippyLink – your go-to solution for streamlined online communication.
+        </p>
+      </div>
+      <div slot="logo2" class="w-[533px] h-[330px] mr-11">
+        <img src="por-que-tener-una-pagina-web-opengraph.png" class="h-full" />
+      </div>
+      </article>
+    </a>
     <Card>
-      <img slot="logo" src="por-que-tener-una-pagina-web-opengraph.png" class="h-full">
-      <p slot="title" class="font-bold block truncate">Proyecto 02.</p>
-      <p slot="description" class="text-gray-400 text-xs">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque mollitia sequi vero perferendis blanditiis nemo</p>
-    </Card>
-    <Card>
-      <img slot="logo" src="por-que-tener-una-pagina-web-opengraph.png" class="h-full">
-      <p slot="title" class="font-bold block truncate">Proyecto 03.</p>
-      <p slot="description" class="text-gray-400 text-xs">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque mollitia sequi vero perferendis blanditiis nemo</p>
+      <div slot="logo1" class="w-[533px] h-[330px] ml-11">
+        <img src="por-que-tener-una-pagina-web-opengraph.png" class="h-full" />
+      </div>
+      <div slot="text" class="w-96 px-14 tracking-tighter">
+        <p class="font-bold block truncate text-2xl pb-px">
+          ZippyLink
+        </p>
+        <p class="text-gray-400">
+          ZippyLink offers swift and secure link shortening for seamless sharing. Trim lengthy URLs into concise, easy-to-share links. Experience quick, reliable, and efficient link management with ZippyLink – your go-to solution for streamlined online communication.
+        </p>
+      </div>
     </Card>
   </div>
 </section>
@@ -228,7 +259,8 @@ import Card from "./card.astro";
     <Card>
       <svg
         fill="#ffffff"
-        xmlns="http://www.w3.org/2000/svg"+
+        xmlns="http://www.w3.org/2000/svg"
+        +
         slot="logo"
         width="85%"
         height="85%"
@@ -252,9 +284,10 @@ import Card from "./card.astro";
           <path
             d="M50,3.5C50,2.7,49.3,2,48.5,2h-45C2.7,2,2,2.7,2,3.5v5C2,9.3,2.7,10,3.5,10h45c0.8,0,1.5-0.7,1.5-1.5V3.5z"
           ></path>
-        </g></svg>
-        <p slot="title" class="font-bold block truncate">Kanban</p>
-        <p slot="description" class="text-gray-400 text-xs">Marco de trabajo</p>
+        </g></svg
+      >
+      <p slot="title" class="font-bold block truncate">Kanban</p>
+      <p slot="description" class="text-gray-400 text-xs">Marco de trabajo</p>
     </Card>
   </div>
 </div>
