@@ -1,21 +1,401 @@
 ---
 import About from "../components/About.astro";
-
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="\Logo.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>portfolio</title>
-	</head>
-	<body class="bg-stone-100 flex items-start justify-center h-screen"> 
-		<div class="bg-stone-50 min-h-full">
-			<About/>
-			<p> bueeenas </p>
-		</div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="\Logo.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-white font-sans flex flex-col">
+    <!-- Navbar -->
+    <header
+      class="flex justify-between items-center p-6 w-full max-w-5xl mx-auto"
+    >
+      <nav>
+        <ul class="flex space-x-6">
+          <li>
+            <button
+              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
+            >
+              Projects
+            </button>
+          </li>
+          <li>
+            <button
+              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
+            >
+              About
+            </button>
+          </li>
+          <li>
+            <button
+              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
+            >
+              Contact
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <button
+        class="text-sm font-medium text-white border border-white px-3 py-2 rounded"
+      >
+        ENG ▼
+      </button>
+    </header>
+    <!-- Content -->
+    <main class="flex-grow flex flex-col items-center justify-center">
+      <!-- Introduction -->
+      <div class="text-center max-w-2xl mx-auto px-4 mb-20">
+        <img
+          src="\hola3.jpg"
+          alt="Profile"
+          width="200"
+          height="200"
+          class="rounded-full mx-auto mb-8"
+        />
+        <div class="text-5xl font-bold text-balance mb-4">
+          Hey! I'm <span id="name-container"></span>
+        </div>
+        <h2 class="text-3xl mb-6 serif">
+          The <strong>Software</strong> Developer
+        </h2>
+        <p class="mb-8 text-gray-400">
+          <strong>With 4+ years</strong> of programming study, I <strong
+            >specialize</strong
+          > in web development but have a <strong>passion</strong> for all aspects
+          of coding. I'm currently <strong>exploring opportunities</strong> as a
+          backend, frontend, or QA developer. With a <strong
+            >solid foundation</strong
+          > in coding and a broad skill set, I'm ready to bring <strong
+            >value and happiness</strong
+          > to your team.
+        </p>
+        <button
+          class="bg-transparent hover:bg-white text-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded mb-6"
+        >
+          Download CV
+        </button>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="text-white hover:text-gray-300 transition-colors">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+          <a href="#" class="text-white hover:text-gray-300 transition-colors">
+            <i class="fab fa-linkedin fa-lg"></i>
+          </a>
+          <a href="#" class="text-white hover:text-gray-300 transition-colors">
+            <i class="far fa-envelope fa-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full mb-20">
+        <h2 class="text-4xl font-bold mb-8 text-center">My projects</h2>
+        <div class="space-y-6">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <div
+              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
+            >
+              <img
+                src="/placeholder.svg"
+                alt="Project 1"
+                width="400"
+                height="225"
+                class="rounded mb-4 md:mb-0 md:mr-6"
+              />
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
+                <p class="text-gray-400 mb-4">
+                  Brief project description goes here. This is a sample text to
+                  show how the card will look with actual content. You can
+                  expand on the project's features, technologies used, or any
+                  other relevant information.
+                </p>
+                <button class="bg-white text-black font-bold py-2 px-4 rounded">
+                  View Project
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <div
+              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
+            >
+              <img
+                src="/placeholder.svg"
+                alt="Project 2"
+                width="400"
+                height="225"
+                class="rounded mb-4 md:mb-0 md:mr-6"
+              />
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
+                <p class="text-gray-400 mb-4">
+                  Brief project description goes here. This is a sample text to
+                  show how the card will look with actual content. You can
+                  expand on the project's features, technologies used, or any
+                  other relevant information.
+                </p>
+                <button class="bg-white text-black font-bold py-2 px-4 rounded">
+                  View Project
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <div
+              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
+            >
+              <img
+                src="/placeholder.svg"
+                alt="Project 3"
+                width="400"
+                height="225"
+                class="rounded mb-4 md:mb-0 md:mr-6"
+              />
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
+                <p class="text-gray-400 mb-4">
+                  Brief project description goes here. This is a sample text to
+                  show how the card will look with actual content. You can
+                  expand on the project's features, technologies used, or any
+                  other relevant information.
+                </p>
+                <button class="bg-white text-black font-bold py-2 px-4 rounded">
+                  View Project
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full max-w-5xl mx-auto px-4 mb-20">
+        <h2 class="text-4xl font-bold mb-8 text-center">More about me</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="bg-gray-900 border border-gray-800 rounded-lg p-6 col-span-1 md:col-span-2"
+          >
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fas fa-briefcase mr-2"></i>
+              At Work
+            </h3>
+            <p class="text-gray-400">
+              Details about your work experience and professional
+              achievements...
+            </p>
+          </div>
+          <div
+            class="bg-gray-900 border border-gray-800 rounded-lg p-6 row-span-2"
+          >
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fas fa-user mr-2"></i>
+              My personal side
+            </h3>
+            <p class="text-gray-400">
+              Information about your hobbies, interests, and personal
+              projects...
+            </p>
+          </div>
+          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fas fa-code mr-2"></i>
+              Languages
+            </h3>
+            <ul class="list-disc list-inside text-gray-400">
+              <li>English B2 - Certification</li>
+              <li>Japanese N6 - Without Certification</li>
+            </ul>
+          </div>
+          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fas fa-map-pin mr-2"></i>
+              Location
+            </h3>
+            <p class="text-gray-400">
+              Your current location or where you're based...
+            </p>
+          </div>
+          <div
+            class="bg-gray-900 border border-gray-800 rounded-lg p-6 col-span-1 md:col-span-2"
+          >
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              <i class="fas fa-laptop-code mr-2"></i>
+              Technologies
+            </h3>
+            <p class="text-gray-400">
+              List of technologies, programming languages, and tools you're
+              proficient in...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full max-w-5xl mx-auto px-4 mb-20">
+        <h2 class="text-4xl font-bold mb-8 text-center">Contact me</h2>
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="w-full md:w-1/3">
+            <h3 class="text-2xl font-semibold mb-4">Get in touch</h3>
+            <p class="text-gray-400 mb-6">
+              Feel free to reach out through any of these platforms:
+            </p>
+            <div class="space-y-4">
+              <a
+                href="#"
+                class="flex items-center text-white hover:text-gray-300 transition-colors"
+              >
+                <i class="far fa-envelope mr-2"></i>
+                your.email@example.com
+              </a>
+              <a
+                href="#"
+                class="flex items-center text-white hover:text-gray-300 transition-colors"
+              >
+                <i class="fab fa-github mr-2"></i>
+                GitHub
+              </a>
+              <a
+                href="#"
+                class="flex items-center text-white hover:text-gray-300 transition-colors"
+              >
+                <i class="fab fa-linkedin mr-2"></i>
+                LinkedIn
+              </a>
+              <a
+                href="#"
+                class="flex items-center text-white hover:text-gray-300 transition-colors"
+              >
+                <i class="fab fa-twitter mr-2"></i>
+                Twitter
+              </a>
+              <a
+                href="#"
+                class="flex items-center text-white hover:text-gray-300 transition-colors"
+              >
+                <i class="fab fa-instagram mr-2"></i>
+                Instagram
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-2/3">
+            <form class="space-y-4">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-400 mb-1"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-400 mb-1"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your email"
+                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-400 mb-1"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Your message"
+                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-white text-black font-bold py-2 px-4 rounded"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer + Copyright -->
+    <footer class="text-center py-6 text-gray-400 border-t border-gray-800">
+      <p>
+        © <span id="current-year"></span> YOUR NAME. All rights reserved. Built
+        with HTML, Tailwind CSS, and Font Awesome. Deployed on [Your Hosting Platform].
+      </p>
+    </footer>
+
+    <script>
+      const nameContainer = document.getElementById("name-container");
+      let displayName = "Duarte Ezequiel";
+      let currentName = "Duarte Ezequiel";
+      let intervalId;
+
+      function updateName() {
+        displayName =
+          displayName === "Duarte Ezequiel" ? "Zekitø" : "Duarte Ezequiel";
+        let currentIndex = 0;
+
+        clearInterval(intervalId);
+        intervalId = setInterval(() => {
+          if (currentIndex >= displayName.length) {
+            currentName = displayName; // Asegurarse de que el nombre final sea correcto
+            renderName();
+            clearInterval(intervalId);
+            return;
+          }
+
+          const nextChar = displayName[currentIndex];
+          currentName = (currentName.slice(0, currentIndex) + nextChar).padEnd(
+            displayName.length,
+            " "
+          );
+          currentIndex++;
+
+          renderName();
+        }, 10);
+      }
+
+      function renderName() {
+        nameContainer.innerHTML = displayName
+          .split("")
+          .map((char, index) => {
+            const currentChar = currentName[index] || " ";
+            const className = currentChar !== char ? "text-red-500" : "";
+            return `<span class="${className}">${currentChar === " " ? "&nbsp;" : currentChar}</span>`;
+          })
+          .join("");
+      }
+
+      function startNameChange() {
+        renderName();
+        setInterval(updateName, 5000);
+      }
+
+      // Inicia el efecto
+      startNameChange();
+    </script>
+  </body>
 </html>
