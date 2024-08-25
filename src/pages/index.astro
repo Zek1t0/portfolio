@@ -1,5 +1,6 @@
 ---
-import About from "../components/About.astro";
+import Introduction from "../components/Introduction.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <html lang="en">
@@ -53,349 +54,237 @@ import About from "../components/About.astro";
     <!-- Content -->
     <main class="flex-grow flex flex-col items-center justify-center">
       <!-- Introduction -->
-      <div class="text-center max-w-2xl mx-auto px-4 mb-20">
-        <img
-          src="\hola3.jpg"
-          alt="Profile"
-          width="200"
-          height="200"
-          class="rounded-full mx-auto mb-8"
-        />
-        <div class="text-5xl font-bold text-balance mb-4">
-          Hey! I'm <span id="name-container"></span>
-        </div>
-        <h2 class="text-3xl mb-6 serif">
-          The <strong>Software</strong> Developer
-        </h2>
-        <p class="mb-8 text-gray-400">
-          <strong>With 4+ years</strong> of programming study, I <strong
-            >specialize</strong
-          > in web development but have a <strong>passion</strong> for all aspects
-          of coding. I'm currently <strong>exploring opportunities</strong> as a
-          backend, frontend, or QA developer. With a <strong
-            >solid foundation</strong
-          > in coding and a broad skill set, I'm ready to bring <strong
-            >value and happiness</strong
-          > to your team.
-        </p>
-        <button
-          class="bg-transparent hover:bg-white text-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded mb-6"
+      <Introduction />
+      <Projects />
+      <div
+        class="grid grid-cols-5 grid-rows-[repeat(12,minmax(0,1fr))] gap-6 max-w-6xl w-full m-32"
+      >
+        <!-- At Work Section -->
+        <section
+          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-6"
+          aria-labelledby="work-heading"
         >
-          Download CV
-        </button>
-        <div class="flex justify-center space-x-4">
-          <a href="#" class="text-white hover:text-gray-300 transition-colors">
-            <i class="fab fa-github fa-lg"></i>
-          </a>
-          <a href="#" class="text-white hover:text-gray-300 transition-colors">
-            <i class="fab fa-linkedin fa-lg"></i>
-          </a>
-          <a href="#" class="text-white hover:text-gray-300 transition-colors">
-            <i class="far fa-envelope fa-lg"></i>
-          </a>
-        </div>
-      </div>
+          <h2
+            id="work-heading"
+            class="text-2xl font-bold mb-4 flex items-center"
+          >
+            <span class="mr-2 text-3xl" aria-hidden="true">□</span> At Work
+          </h2>
+          <p class="mb-4">
+            Although I’m seeking my <strong>first professional opportunity</strong>, I bring a strong <strong>eagerness to learn</strong> and <strong>adapt</strong>. I value a <strong>collaborative and supportive team environment</strong> where <strong>skills are recognized</strong> and a <strong>positive culture</strong> is fostered.
+          </p>
+          <p>
+            Above all, I believe that being a <strong>good person</strong> comes before being a good <strong>developer</strong>. While I’m dedicated to <strong>growing as a professional</strong> and striving to excel, I prioritize <strong>supporting and respecting others</strong>, ensuring a <strong>harmonious and empathetic workplace</strong>.
+          </p>
+        </section>
 
-      <div class="w-full mb-20">
-        <h2 class="text-4xl font-bold mb-8 text-center">My projects</h2>
-        <div class="space-y-6">
-          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
+        <!-- My personal side Section -->
+        <section
+          class="bg-gray-800 rounded-lg p-6 col-span-2 row-span-8 col-start-4 row-start-1"
+          aria-labelledby="personal-heading"
+        >
+          <h2
+            id="personal-heading"
+            class="text-2xl font-bold mb-4 flex items-center"
+          >
+            <span class="mr-2 text-3xl" aria-hidden="true">□</span> My personal side
+          </h2>
+          <p class="mb-4">
+            <strong>Resilient</strong>, <strong>curious</strong>, and <strong>benevolent</strong>—these three words best define me. I wasn't always naturally skilled at connecting with people, so I took the initiative to learn through <strong>psychology content</strong>, which taught me to be <strong>trustworthy</strong>, <strong>listen actively</strong>, and <strong>collaborate effectively</strong>.
+          </p>
+          <p>
+            I've always been naturally <strong>curious</strong>, not only looking to learn new things but also to <strong>understand</strong> them. <strong>Asking questions</strong> and <strong>figuring out how things work</strong> is my passion. Whether <strong>coding</strong> or <strong>learning new skills</strong>, I approach everything with <strong>resilience</strong> and a <strong>benevolent mindset</strong>, staying <strong>focused</strong> and <strong>positive</strong> even in the face of obstacles.
+          </p>
+        </section>
+
+        <!-- Languages Section -->
+        <section
+          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-2 col-start-1 row-start-7"
+          aria-labelledby="languages-heading"
+        >
+          <h2
+            id="languages-heading"
+            class="text-2xl font-bold mb-4 flex items-center"
+          >
+            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Languages
+          </h2>
+          <ul class="list-disc list-inside">
+            <li>English B2 - Certification</li>
+            <li>Japanese N6</li>
+          </ul>
+        </section>
+
+        <!-- Location Section -->
+        <section
+          class="bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center justify-center text-center"
+          aria-labelledby="location-heading"
+        >
+          <h2
+            id="location-heading"
+            class="text-2xl font-bold mb-6 flex items-center self-start w-full"
+          >
+            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Location
+          </h2>
+          <h3 class="text-2xl font-semibold mb-2">Based in Argentina</h3>
+          <p class="text-sm mb-6">5h ahead of you</p>
+          <div class="w-full h-px bg-gray-700 mb-6"></div>
+          <div class="flex items-center justify-center mb-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mr-2"
+              aria-hidden="true"
+              ><circle cx="12" cy="12" r="10"></circle><polyline
+                points="12 6 12 12 16 14"></polyline></svg
+            >
+            <span class="text-4xl font-bold">2:56 PM</span>
+            <span class="ml-2 text-lg">GMT-3</span>
+          </div>
+          <p class="text-lg">Sunday, August 25</p>
+        </section>
+
+        <!-- Technologies Section -->
+        <section
+          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9"
+          aria-labelledby="technologies-heading"
+        >
+          <h2
+            id="technologies-heading"
+            class="text-2xl font-bold mb-4 flex items-center"
+          >
+            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Technologies
+          </h2>
+          <div class="grid grid-cols-4 gap-4">
+            <!-- Repeat this div 12 times for the technology icons -->
             <div
-              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
+              class="bg-gray-700 p-4 rounded-lg flex items-center justify-center"
             >
               <img
                 src="/placeholder.svg"
-                alt="Project 1"
-                width="400"
-                height="225"
-                class="rounded mb-4 md:mb-0 md:mr-6"
+                alt="Technology icon 1"
+                class="w-12 h-12"
               />
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
-                <p class="text-gray-400 mb-4">
-                  Brief project description goes here. This is a sample text to
-                  show how the card will look with actual content. You can
-                  expand on the project's features, technologies used, or any
-                  other relevant information.
-                </p>
-                <button class="bg-white text-black font-bold py-2 px-4 rounded">
-                  View Project
-                </button>
+            </div>
+            
+            <!-- ... Repeat 11 more times ... -->
+          </div>
+        </section>
+      </div>
+        <div class="w-full max-w-5xl mx-auto px-4 mb-20">
+          <h2 class="text-4xl font-bold mb-8 text-center">Contact me</h2>
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="w-full md:w-1/3">
+              <h3 class="text-2xl font-semibold mb-4">Get in touch</h3>
+              <p class="text-gray-400 mb-6">
+                Feel free to reach out through any of these platforms:
+              </p>
+              <div class="space-y-4">
+                <a
+                  href="#"
+                  class="flex items-center text-white hover:text-gray-300 transition-colors"
+                >
+                  <i class="far fa-envelope mr-2"></i>
+                  your.email@example.com
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center text-white hover:text-gray-300 transition-colors"
+                >
+                  <i class="fab fa-github mr-2"></i>
+                  GitHub
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center text-white hover:text-gray-300 transition-colors"
+                >
+                  <i class="fab fa-linkedin mr-2"></i>
+                  LinkedIn
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center text-white hover:text-gray-300 transition-colors"
+                >
+                  <i class="fab fa-twitter mr-2"></i>
+                  Twitter
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center text-white hover:text-gray-300 transition-colors"
+                >
+                  <i class="fab fa-instagram mr-2"></i>
+                  Instagram
+                </a>
               </div>
             </div>
-          </div>
-          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
-            <div
-              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
-            >
-              <img
-                src="/placeholder.svg"
-                alt="Project 2"
-                width="400"
-                height="225"
-                class="rounded mb-4 md:mb-0 md:mr-6"
-              />
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
-                <p class="text-gray-400 mb-4">
-                  Brief project description goes here. This is a sample text to
-                  show how the card will look with actual content. You can
-                  expand on the project's features, technologies used, or any
-                  other relevant information.
-                </p>
-                <button class="bg-white text-black font-bold py-2 px-4 rounded">
-                  View Project
+            <div class="w-full md:w-2/3">
+              <form class="space-y-4">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-400 mb-1"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-400 mb-1"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Your email"
+                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="message"
+                    class="block text-sm font-medium text-gray-400 mb-1"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Your message"
+                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-white text-black font-bold py-2 px-4 rounded"
+                >
+                  Send Message
                 </button>
-              </div>
-            </div>
-          </div>
-          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
-            <div
-              class="max-w-5xl mx-auto flex flex-col md:flex-row items-center"
-            >
-              <img
-                src="/placeholder.svg"
-                alt="Project 3"
-                width="400"
-                height="225"
-                class="rounded mb-4 md:mb-0 md:mr-6"
-              />
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">Project Title</h3>
-                <p class="text-gray-400 mb-4">
-                  Brief project description goes here. This is a sample text to
-                  show how the card will look with actual content. You can
-                  expand on the project's features, technologies used, or any
-                  other relevant information.
-                </p>
-                <button class="bg-white text-black font-bold py-2 px-4 rounded">
-                  View Project
-                </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="w-full max-w-5xl mx-auto px-4 mb-20">
-        <h2 class="text-4xl font-bold mb-8 text-center">More about me</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            class="bg-gray-900 border border-gray-800 rounded-lg p-6 col-span-1 md:col-span-2"
-          >
-            <h3 class="text-xl font-semibold mb-2 flex items-center">
-              <i class="fas fa-briefcase mr-2"></i>
-              At Work
-            </h3>
-            <p class="text-gray-400">
-              Details about your work experience and professional
-              achievements...
-            </p>
-          </div>
-          <div
-            class="bg-gray-900 border border-gray-800 rounded-lg p-6 row-span-2"
-          >
-            <h3 class="text-xl font-semibold mb-2 flex items-center">
-              <i class="fas fa-user mr-2"></i>
-              My personal side
-            </h3>
-            <p class="text-gray-400">
-              Information about your hobbies, interests, and personal
-              projects...
-            </p>
-          </div>
-          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-semibold mb-2 flex items-center">
-              <i class="fas fa-code mr-2"></i>
-              Languages
-            </h3>
-            <ul class="list-disc list-inside text-gray-400">
-              <li>English B2 - Certification</li>
-              <li>Japanese N6 - Without Certification</li>
-            </ul>
-          </div>
-          <div class="bg-gray-900 border border-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-semibold mb-2 flex items-center">
-              <i class="fas fa-map-pin mr-2"></i>
-              Location
-            </h3>
-            <p class="text-gray-400">
-              Your current location or where you're based...
-            </p>
-          </div>
-          <div
-            class="bg-gray-900 border border-gray-800 rounded-lg p-6 col-span-1 md:col-span-2"
-          >
-            <h3 class="text-xl font-semibold mb-2 flex items-center">
-              <i class="fas fa-laptop-code mr-2"></i>
-              Technologies
-            </h3>
-            <p class="text-gray-400">
-              List of technologies, programming languages, and tools you're
-              proficient in...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full max-w-5xl mx-auto px-4 mb-20">
-        <h2 class="text-4xl font-bold mb-8 text-center">Contact me</h2>
-        <div class="flex flex-col md:flex-row gap-8">
-          <div class="w-full md:w-1/3">
-            <h3 class="text-2xl font-semibold mb-4">Get in touch</h3>
-            <p class="text-gray-400 mb-6">
-              Feel free to reach out through any of these platforms:
-            </p>
-            <div class="space-y-4">
-              <a
-                href="#"
-                class="flex items-center text-white hover:text-gray-300 transition-colors"
-              >
-                <i class="far fa-envelope mr-2"></i>
-                your.email@example.com
-              </a>
-              <a
-                href="#"
-                class="flex items-center text-white hover:text-gray-300 transition-colors"
-              >
-                <i class="fab fa-github mr-2"></i>
-                GitHub
-              </a>
-              <a
-                href="#"
-                class="flex items-center text-white hover:text-gray-300 transition-colors"
-              >
-                <i class="fab fa-linkedin mr-2"></i>
-                LinkedIn
-              </a>
-              <a
-                href="#"
-                class="flex items-center text-white hover:text-gray-300 transition-colors"
-              >
-                <i class="fab fa-twitter mr-2"></i>
-                Twitter
-              </a>
-              <a
-                href="#"
-                class="flex items-center text-white hover:text-gray-300 transition-colors"
-              >
-                <i class="fab fa-instagram mr-2"></i>
-                Instagram
-              </a>
-            </div>
-          </div>
-          <div class="w-full md:w-2/3">
-            <form class="space-y-4">
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-400 mb-1"
-                  >Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your name"
-                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-400 mb-1"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Your email"
-                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                />
-              </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-400 mb-1"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  placeholder="Your message"
-                  class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-white text-black font-bold py-2 px-4 rounded"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <!-- Footer + Copyright -->
+      <footer class="text-center py-6 text-gray-400 border-t border-gray-800">
+        <p>
+          © <span id="current-year"></span> YOUR NAME. All rights reserved. Built
+          with HTML, Tailwind CSS, and Font Awesome. Deployed on [Your Hosting Platform].
+        </p>
+      </footer>
     </main>
-    <!-- Footer + Copyright -->
-    <footer class="text-center py-6 text-gray-400 border-t border-gray-800">
-      <p>
-        © <span id="current-year"></span> YOUR NAME. All rights reserved. Built
-        with HTML, Tailwind CSS, and Font Awesome. Deployed on [Your Hosting Platform].
-      </p>
-    </footer>
-
-    <script>
-      const nameContainer = document.getElementById("name-container");
-      let displayName = "Duarte Ezequiel";
-      let currentName = "Duarte Ezequiel";
-      let intervalId;
-
-      function updateName() {
-        displayName =
-          displayName === "Duarte Ezequiel" ? "Zekitø" : "Duarte Ezequiel";
-        let currentIndex = 0;
-
-        clearInterval(intervalId);
-        intervalId = setInterval(() => {
-          if (currentIndex >= displayName.length) {
-            currentName = displayName; // Asegurarse de que el nombre final sea correcto
-            renderName();
-            clearInterval(intervalId);
-            return;
-          }
-
-          const nextChar = displayName[currentIndex];
-          currentName = (currentName.slice(0, currentIndex) + nextChar).padEnd(
-            displayName.length,
-            " "
-          );
-          currentIndex++;
-
-          renderName();
-        }, 10);
-      }
-
-      function renderName() {
-        nameContainer.innerHTML = displayName
-          .split("")
-          .map((char, index) => {
-            const currentChar = currentName[index] || " ";
-            const className = currentChar !== char ? "text-red-500" : "";
-            return `<span class="${className}">${currentChar === " " ? "&nbsp;" : currentChar}</span>`;
-          })
-          .join("");
-      }
-
-      function startNameChange() {
-        renderName();
-        setInterval(updateName, 5000);
-      }
-
-      // Inicia el efecto
-      startNameChange();
-    </script>
   </body>
 </html>
