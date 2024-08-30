@@ -1,6 +1,8 @@
 ---
+import About from "../components/About.astro";
 import Introduction from "../components/Introduction.astro";
 import Projects from "../components/Projects.astro";
+import ContactMe from "../components/ContactMe.astro"
 ---
 
 <html lang="en">
@@ -14,277 +16,92 @@ import Projects from "../components/Projects.astro";
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
     />
-  </head>
-  <body class="min-h-screen bg-zinc-950 text-white font-sans flex flex-col">
-    <!-- Navbar -->
-    <header
-      class="flex justify-between items-center p-6 w-full max-w-5xl mx-auto"
-    >
+</head>
+<body class="min-h-screen bg-amber-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans flex flex-col transition-colors duration-300">
+  <!-- Navbar -->
+  <header class="flex justify-between items-center p-6 w-full max-w-7xl mx-auto">
       <nav>
-        <ul class="flex space-x-6">
-          <li>
-            <button
-              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
-            >
-              Projects
-            </button>
-          </li>
-          <li>
-            <button
-              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
-            >
-              About
-            </button>
-          </li>
-          <li>
-            <button
-              class="text-sm font-medium text-white bg-transparent hover:bg-gray-700 px-3 py-2 rounded"
-            >
-              Contact
-            </button>
-          </li>
-        </ul>
+          <ul class="flex space-x-6">
+              <li>
+                  <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+                      Projects
+                  </button>
+              </li>
+              <li>
+                  <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+                      About
+                  </button>
+              </li>
+              <li>
+                  <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+                      Contact
+                  </button>
+              </li>
+          </ul>
       </nav>
-      <button
-        class="text-sm font-medium text-white border border-white px-3 py-2 rounded"
-      >
-        ENG ▼
-      </button>
-    </header>
+      <div class="flex items-center space-x-4">
+          <button class="text-sm font-medium text-gray-800 dark:text-gray-200 border border-gray-800 dark:border-gray-200 px-3 py-2 rounded hover:bg-amber-200 dark:hover:bg-gray-700 transition duration-300">
+              ENG ▼
+          </button>
+          <button id="theme-toggle" class="text-gray-800 dark:text-gray-200 hover:bg-amber-200 dark:hover:bg-gray-700 rounded-full p-2 transition duration-300">
+              <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+              <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+      </div>
+  </header>
     <!-- Content -->
     <main class="flex-grow flex flex-col items-center justify-center">
-      <!-- Introduction -->
       <Introduction />
       <Projects />
-      <div
-        class="grid grid-cols-5 grid-rows-[repeat(12,minmax(0,1fr))] gap-6 max-w-6xl w-full m-32"
-      >
-        <!-- At Work Section -->
-        <section
-          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-6"
-          aria-labelledby="work-heading"
-        >
-          <h2
-            id="work-heading"
-            class="text-2xl font-bold mb-4 flex items-center"
-          >
-            <span class="mr-2 text-3xl" aria-hidden="true">□</span> At Work
-          </h2>
-          <p class="mb-4">
-            Although I’m seeking my <strong>first professional opportunity</strong>, I bring a strong <strong>eagerness to learn</strong> and <strong>adapt</strong>. I value a <strong>collaborative and supportive team environment</strong> where <strong>skills are recognized</strong> and a <strong>positive culture</strong> is fostered.
-          </p>
-          <p>
-            Above all, I believe that being a <strong>good person</strong> comes before being a good <strong>developer</strong>. While I’m dedicated to <strong>growing as a professional</strong> and striving to excel, I prioritize <strong>supporting and respecting others</strong>, ensuring a <strong>harmonious and empathetic workplace</strong>.
-          </p>
-        </section>
+      <About />
+      <ContactMe />
+<!-- Footer + Copyright -->
+<footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-amber-200 dark:border-gray-700">
+  <p>
+      © <span id="current-year"></span> YOUR NAME. All rights reserved. Built
+      with HTML, Tailwind CSS, and Font Awesome. Deployed on [Your Hosting Platform].
+  </p>
+</footer>
+</main>
 
-        <!-- My personal side Section -->
-        <section
-          class="bg-gray-800 rounded-lg p-6 col-span-2 row-span-8 col-start-4 row-start-1"
-          aria-labelledby="personal-heading"
-        >
-          <h2
-            id="personal-heading"
-            class="text-2xl font-bold mb-4 flex items-center"
-          >
-            <span class="mr-2 text-3xl" aria-hidden="true">□</span> My personal side
-          </h2>
-          <p class="mb-4">
-            <strong>Resilient</strong>, <strong>curious</strong>, and <strong>benevolent</strong>—these three words best define me. I wasn't always naturally skilled at connecting with people, so I took the initiative to learn through <strong>psychology content</strong>, which taught me to be <strong>trustworthy</strong>, <strong>listen actively</strong>, and <strong>collaborate effectively</strong>.
-          </p>
-          <p>
-            I've always been naturally <strong>curious</strong>, not only looking to learn new things but also to <strong>understand</strong> them. <strong>Asking questions</strong> and <strong>figuring out how things work</strong> is my passion. Whether <strong>coding</strong> or <strong>learning new skills</strong>, I approach everything with <strong>resilience</strong> and a <strong>benevolent mindset</strong>, staying <strong>focused</strong> and <strong>positive</strong> even in the face of obstacles.
-          </p>
-        </section>
+<script>
+// Theme toggle functionality
+const themeToggleButton = document.getElementById('theme-toggle');
+const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        <!-- Languages Section -->
-        <section
-          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-2 col-start-1 row-start-7"
-          aria-labelledby="languages-heading"
-        >
-          <h2
-            id="languages-heading"
-            class="text-2xl font-bold mb-4 flex items-center"
-          >
-            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Languages
-          </h2>
-          <ul class="list-disc list-inside">
-            <li>English B2 - Certification</li>
-            <li>Japanese N6</li>
-          </ul>
-        </section>
+// Function to set the theme
+function setTheme(theme) {
+  if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+      themeToggleDarkIcon.classList.add('hidden');
+      localStorage.setItem('color-theme', 'dark');
+  } else {
+      document.documentElement.classList.remove('dark');
+      themeToggleLightIcon.classList.add('hidden');
+      themeToggleDarkIcon.classList.remove('hidden');
+      localStorage.setItem('color-theme', 'light');
+  }
+}
 
-        <!-- Location Section -->
-        <section
-          class="bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center justify-center text-center"
-          aria-labelledby="location-heading"
-        >
-          <h2
-            id="location-heading"
-            class="text-2xl font-bold mb-6 flex items-center self-start w-full"
-          >
-            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Location
-          </h2>
-          <h3 class="text-2xl font-semibold mb-2">Based in Argentina</h3>
-          <p class="text-sm mb-6">5h ahead of you</p>
-          <div class="w-full h-px bg-gray-700 mb-6"></div>
-          <div class="flex items-center justify-center mb-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="mr-2"
-              aria-hidden="true"
-              ><circle cx="12" cy="12" r="10"></circle><polyline
-                points="12 6 12 12 16 14"></polyline></svg
-            >
-            <span class="text-4xl font-bold">2:56 PM</span>
-            <span class="ml-2 text-lg">GMT-3</span>
-          </div>
-          <p class="text-lg">Sunday, August 25</p>
-        </section>
+// Set initial theme
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  setTheme('dark');
+} else {
+  setTheme('light');
+}
 
-        <!-- Technologies Section -->
-        <section
-          class="bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9"
-          aria-labelledby="technologies-heading"
-        >
-          <h2
-            id="technologies-heading"
-            class="text-2xl font-bold mb-4 flex items-center"
-          >
-            <span class="mr-2 text-3xl" aria-hidden="true">□</span> Technologies
-          </h2>
-          <div class="grid grid-cols-4 gap-4">
-            <!-- Repeat this div 12 times for the technology icons -->
-            <div
-              class="bg-gray-700 p-4 rounded-lg flex items-center justify-center"
-            >
-              <img
-                src="/placeholder.svg"
-                alt="Technology icon 1"
-                class="w-12 h-12"
-              />
-            </div>
-            
-            <!-- ... Repeat 11 more times ... -->
-          </div>
-        </section>
-      </div>
-        <div class="w-full max-w-5xl mx-auto px-4 mb-20">
-          <h2 class="text-4xl font-bold mb-8 text-center">Contact me</h2>
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="w-full md:w-1/3">
-              <h3 class="text-2xl font-semibold mb-4">Get in touch</h3>
-              <p class="text-gray-400 mb-6">
-                Feel free to reach out through any of these platforms:
-              </p>
-              <div class="space-y-4">
-                <a
-                  href="#"
-                  class="flex items-center text-white hover:text-gray-300 transition-colors"
-                >
-                  <i class="far fa-envelope mr-2"></i>
-                  your.email@example.com
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center text-white hover:text-gray-300 transition-colors"
-                >
-                  <i class="fab fa-github mr-2"></i>
-                  GitHub
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center text-white hover:text-gray-300 transition-colors"
-                >
-                  <i class="fab fa-linkedin mr-2"></i>
-                  LinkedIn
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center text-white hover:text-gray-300 transition-colors"
-                >
-                  <i class="fab fa-twitter mr-2"></i>
-                  Twitter
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center text-white hover:text-gray-300 transition-colors"
-                >
-                  <i class="fab fa-instagram mr-2"></i>
-                  Instagram
-                </a>
-              </div>
-            </div>
-            <div class="w-full md:w-2/3">
-              <form class="space-y-4">
-                <div>
-                  <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-400 mb-1"
-                    >Name</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-400 mb-1"
-                    >Email</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Your email"
-                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="message"
-                    class="block text-sm font-medium text-gray-400 mb-1"
-                    >Message</label
-                  >
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    placeholder="Your message"
-                    class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full bg-white text-black font-bold py-2 px-4 rounded"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Footer + Copyright -->
-      <footer class="text-center py-6 text-gray-400 border-t border-gray-800">
-        <p>
-          © <span id="current-year"></span> YOUR NAME. All rights reserved. Built
-          with HTML, Tailwind CSS, and Font Awesome. Deployed on [Your Hosting Platform].
-        </p>
-      </footer>
-    </main>
-  </body>
-</html>
+// Toggle theme when button is clicked
+themeToggleButton.addEventListener('click', function() {
+  if (document.documentElement.classList.contains('dark')) {
+      setTheme('light');
+  } else {
+      setTheme('dark');
+  }
+});
+
+// Update current year
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+</body>
