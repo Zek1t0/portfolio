@@ -4,6 +4,13 @@ export default {
 	darkMode: 'class',
 	theme: {
 		extend: {
+		  fontFamily: {
+			'bangers': ['Bangers', 'cursive'],
+			'comic': ['"Comic Neue"', 'cursive'],
+			'roboto-mono': ['"Roboto Mono"', 'monospace'],
+			'roboto': ['Roboto', 'sans-serif'],
+			'rubik': ['Rubik', 'sans-serif'],
+		  },
 			colors: {
 				emerald: {
 					600: '#059669',
