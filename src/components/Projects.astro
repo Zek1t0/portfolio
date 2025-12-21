@@ -1,12 +1,191 @@
 ---
-import Card from "./Card.astro"
+import Card from "./Card.astro";
+
+const projects = [
+  {
+    title: "Project 01 — Personal Portfolio",
+    subtitle: "Showcasing my work and skills",
+    description1:
+      "This is my personal portfolio website, which I actively use to present my projects, technical skills, and contact information. It’s designed to be clean, fast, and easy to navigate, with a strong focus on clarity and structure.",
+    description2:
+      "The site includes sections for my profile, skills, featured projects, and contact details. I implemented JavaScript scripts to improve interaction and user experience, keeping the codebase simple and maintainable. This project reflects how I approach front-end development: clear layouts, consistent styling, and practical solutions.",
+    meta: [
+      { label: "Technology used", value: "Astro" },
+      { label: "Language used", value: "HTML · CSS · JavaScript" },
+      { label: "Framework used", value: "Astro" },
+      { label: "Tool used", value: "Git · GitHub" },
+    ],
+    imageSrc: "/PFP.jpg",
+    videoSrc: "/video.webm", // si querés video para este
+  },
+
+  {
+    title: "Project 02 — Comedor Luna",
+    subtitle: "Real website for a community food project",
+    description1:
+      "Comedor Luna is a real website currently in use by a local community food initiative. The goal was to create a clear and accessible site that presents information in a simple and organized way.",
+    description2:
+      "I built the site with a responsive layout, section-based navigation, and reusable components. Special attention was given to readability, visual hierarchy, and mobile usability, ensuring the content works well on all devices. This project represents my experience working on a real-world website with real users and practical requirements.",
+    meta: [
+      { label: "Technology used", value: "Astro · TailwindCSS" },
+      { label: "Language used", value: "HTML · CSS · JavaScript" },
+      { label: "Framework used", value: "Astro" },
+      { label: "Tool used", value: "Git · GitHub" },
+    ],
+    imageSrc: "/Logo.png",
+    videoSrc: "", // sin video => queda imagen
+  },
+
+  {
+    title: "Project 03 — Travel Blog",
+    subtitle: "Full-stack blog application (team project)",
+    description1:
+      "This project is a full-stack travel blog developed as part of a team. It includes user authentication and multiple roles (visitor, member, contributor), allowing different levels of interaction with the platform.",
+    description2:
+      "The application supports full CRUD functionality for posts and comments, along with filtering options by category, date, and alphabetical order. The project helped me gain experience working with back-end logic, databases, and team-based development.",
+    meta: [
+      { label: "Technology used", value: "Python · Django · SQL" },
+      { label: "Language used", value: "Python · HTML · CSS" },
+      { label: "Framework used", value: "Django" },
+      { label: "Tool used", value: "Git · GitHub" },
+    ],
+    imageSrc: "/PFP.jpg",
+    videoSrc: "",
+  },
+];
 ---
-<!-- Projects -->
+
 <section class="w-full max-w-7xl mx-auto px-4 mb-40">
-    <h2 class=" font-roboto text-4xl font-bold mb-14 text-center text-cerise-600 dark:text-emerald-400">My projects</h2>
-    <div class="space-y-24">
-<Card/>
-<Card/>
-<Card/> 
-    </div>
+  <h2 class="font-roboto text-4xl font-bold mb-14 text-center text-cerise-600 dark:text-emerald-400">
+    My projects
+  </h2>
+
+  <div class="space-y-24">
+    {projects.map((p) => <Card {...p} />)}
+  </div>
 </section>
+
+
+<script is:inline>
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+
+  const cards = Array.from(document.querySelectorAll("[data-project-card]"));
+  const ratios = new Map(cards.map((el) => [el, 0]));
+
+  let activeEl = null;
+  let rafId = 0;
+
+  const ACTIVATE_AT = 0.50;   // entra en “foco”
+  const STAY_AT = 0.28;       // si ya está activa, se mantiene mientras no baje de esto
+  const UNLOAD_AT = 0.01;     // si está MUY fuera, liberamos video
+  const SWITCH_MARGIN = 0.08; // evita flicker cambiando entre 2 cards
+
+  function ensureVideoLoaded(videoEl) {
+    if (!videoEl) return;
+    if (videoEl.dataset.loaded === "true") return;
+
+    const src = videoEl.dataset.videoSrc;
+    if (!src) return;
+
+    videoEl.src = src;                 // lazy real: recién acá aparece el src
+    videoEl.dataset.loaded = "true";
+    videoEl.load();
+  }
+
+  function unloadVideo(videoEl) {
+    if (!videoEl) return;
+    try { videoEl.pause(); } catch (_) {}
+
+    if (videoEl.dataset.loaded === "true") {
+      videoEl.removeAttribute("src");
+      videoEl.load();
+      videoEl.dataset.loaded = "false";
+    }
+  }
+
+  function pauseVideo(videoEl) {
+    if (!videoEl) return;
+    try { videoEl.pause(); } catch (_) {}
+  }
+
+  async function playVideo(videoEl) {
+    if (!videoEl || reduceMotion) return;
+    ensureVideoLoaded(videoEl);
+    try { await videoEl.play(); } catch (_) {}
+  }
+
+  function applyActive(nextActive) {
+    if (activeEl === nextActive) return;
+    activeEl = nextActive;
+
+    for (const el of cards) {
+      const isActive = el === activeEl;
+      el.dataset.inview = isActive ? "true" : "false";
+
+      const hasVideo = el.dataset.hasVideo === "true";
+      const videoEl = el.querySelector("video.project-video");
+      if (!hasVideo || !videoEl) continue;
+
+      if (isActive) {
+        playVideo(videoEl);
+      } else {
+        pauseVideo(videoEl);
+        const r = ratios.get(el) ?? 0;
+        if (r <= UNLOAD_AT) unloadVideo(videoEl);
+      }
+    }
+  }
+
+  function pickBestActive() {
+    // si ya hay activa y todavía está bastante visible, mantenela
+    if (activeEl) {
+      const ar = ratios.get(activeEl) ?? 0;
+      if (ar >= STAY_AT) {
+        // permitimos cambio solo si hay otra significativamente más visible
+        let bestEl = activeEl;
+        let bestRatio = ar;
+
+        for (const [el, r] of ratios.entries()) {
+          if (r > bestRatio + SWITCH_MARGIN) {
+            bestRatio = r;
+            bestEl = el;
+          }
+        }
+        return bestEl;
+      }
+    }
+
+    // si no hay activa (o quedó muy afuera), buscamos la mejor y la activamos si supera umbral
+    let bestEl = null;
+    let bestRatio = 0;
+
+    for (const [el, r] of ratios.entries()) {
+      if (r > bestRatio) {
+        bestRatio = r;
+        bestEl = el;
+      }
+    }
+
+    if (bestRatio >= ACTIVATE_AT) return bestEl;
+    return null;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) ratios.set(e.target, e.intersectionRatio);
+
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        applyActive(pickBestActive());
+      });
+    },
+    {
+      root: null,
+      rootMargin: "-15% 0px -15% 0px",
+      threshold: [0, 0.1, 0.25, 0.4, 0.55, 0.75, 1],
+    }
+  );
+
+  cards.forEach((c) => io.observe(c));
+</script>

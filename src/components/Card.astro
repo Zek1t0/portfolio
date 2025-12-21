@@ -1,44 +1,303 @@
-<!-- Project -->
-<div class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-amber-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg">
-  <div class="flex flex-col lg:flex-row">
-      <div class="flex-1 p-8">
-          <div class="mb-4">
-              <div class="flex justify-between items-center">
-                  <h3 class="text-3xl font-bold text-cerise-600 dark:text-emerald-400">My Project 01</h3>
-                  <div class="flex space-x-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                          <polyline points="15 3 21 3 21 9"></polyline>
-                          <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                  </div>
-              </div>
+---
+const {
+  title = "Project title",
+  subtitle = "Short subtitle",
+  description1 = "",
+  description2 = "",
+  tags = ["Astro", "HTML", "CSS", "JavaScript"],
+  imageSrc = "/PFP.jpg",
+  imageAlt = "Project preview",
+  videoSrc = "",
+  liveUrl = "",
+  repoUrl = "",
+} = Astro.props;
+
+const hasVideo = Boolean(videoSrc && videoSrc.trim().length);
+
+const ICONS = {
+  Astro: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.7H21l-5.5 4 2.1 6.8L12 15.7 6.4 19.5 8.5 12.7 3 8.7h6.8L12 2z"/></svg>`,
+  TailwindCSS: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9c1.5-2.6 3.7-3.9 6.5-3.9 4.2 0 5.3 3.1 7.5 3.9-1.5 2.6-3.7 3.9-6.5 3.9C10.3 12.8 9.2 9.7 7 9zm-4 6c1.5-2.6 3.7-3.9 6.5-3.9 4.2 0 5.3 3.1 7.5 3.9-1.5 2.6-3.7 3.9-6.5 3.9C6.3 18.8 5.2 15.7 3 15z"/></svg>`,
+  HTML: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7h2l-5-7 5-7H8zm8 0h-2l5 7-5 7h2l5-7-5-7z"/></svg>`,
+  CSS: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1 16-4 2-4-2L7 4zm3 4l.2 2H15l-.2-2H10zm.4 4l.2 2h3.4l-.1 1.4-1.7.7-1.7-.7-.1-1H9l.2 2.6 2.8 1.2 2.8-1.2.4-5H10.4z"/></svg>`,
+  JavaScript: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h8v18h-8V3zM3 3h8v18H3V3zm5 14a2 2 0 01-4 0h2a0 0 0 004 0H8z"/></svg>`,
+  TypeScript: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v18H3V3zm4 5h6v2H11v8H9V10H7V8zm11 3c-.4-.7-1-.9-1.7-.9-.8 0-1.3.4-1.3 1 0 .7.5 1 1.8 1.4 1.8.6 2.8 1.4 2.8 3.1 0 1.8-1.4 3-3.6 3-1.8 0-3-.7-3.7-2l1.7-1c.5.9 1.1 1.2 2.1 1.2.9 0 1.5-.4 1.5-1.1 0-.8-.6-1.1-2-1.6-1.7-.6-2.7-1.3-2.7-3 0-1.6 1.2-2.8 3.2-2.8 1.4 0 2.4.5 3.1 1.7L18 11z"/></svg>`,
+  Django: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h4v9c0 3.6-2 6-6 7v-3c2.1-.8 2-2.1 2-4V3zm6 5h4v9.5c0 2.9-1.8 4.7-5 5.5v-3c1.7-.6 1-1.2 1-2.7V8z"/></svg>`,
+  Python: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 0 3 2 3 2v3H9c-2 0-3 1-3 3v2c0 2 2 3 3 3h3c2 0 3-1 3-3v-1h-3v1c0 1-.7 1-1 1H9c-.5 0-1-.4-1-1v-2c0-.7.3-1 1-1h7c2 0 3-1 3-3V5s0-2-3-2h-4zm0 2a1 1 0 110 2 1 1 0 010-2z"/></svg>`,
+  SQL: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c4.4 0 8 1.8 8 4v12c0 2.2-3.6 4-8 4s-8-1.8-8-4V6c0-2.2 3.6-4 8-4z"/></svg>`,
+  Git: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 3.6l6.8 6.8a2 2 0 010 2.8l-6.8 6.8a2 2 0 01-2.8 0l-6.8-6.8a2 2 0 010-2.8l6.8-6.8a2 2 0 012.8 0z"/></svg>`,
+  GitHub: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .6-3.6-1.3-3.6-1.3-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.7 1.2 2.4 1.4.1-.7.4-1.2.7-1.5-2.4-.3-4.9-1.2-4.9-5.3 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .9a10 10 0 015.4 0c2.1-1.2 3-.9 3-.9.6 1.5.2 2.6.1 2.9.7.8 1.1 1.7 1.1 2.9 0 4.1-2.5 5-4.9 5.3.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg>`,
+  default: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6a6 6 0 100 12 6 6 0 000-12z"/></svg>`,
+};
+
+const iconFor = (tag) => ICONS[tag] ?? ICONS.default;
+---
+
+<!-- Fijamos alto SOLO en desktop -->
+<div
+  class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-amber-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg lg:h-[420px]"
+  data-project-card
+  data-inview="false"
+  data-has-video={hasVideo ? "true" : "false"}
+>
+  <div class="flex flex-col lg:flex-row h-full">
+    <!-- IZQUIERDA: flex-col + texto scrollea si se pasa -->
+    <div class="flex-1 p-8 lg:p-10 h-full flex flex-col">
+      <!-- header -->
+      <div class="mb-4">
+        <div class="flex justify-between items-start gap-4">
+          <h3 class="text-3xl lg:text-4xl font-bold text-cerise-600 dark:text-emerald-400 leading-tight">
+            {title}
+          </h3>
+
+          <div class="flex items-center gap-2 shrink-0 opacity-85">
+            {repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
+                aria-label="Repository"
+                title="Repository"
+              >
+                <span class="icon-btn" set:html={ICONS.GitHub} />
+              </a>
+            )}
+
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
+                aria-label="Live"
+                title="Live"
+              >
+                <svg class="icon-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4 9.3-9.3H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+                </svg>
+              </a>
+            )}
           </div>
-          <div>
-              <h4 class="text-amber-700 dark:text-white text-lg font-bold mb-4">An introduction to my project</h4>
-              <p class="mb-4">
-                  A brief explanation about my project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quam quam, eu suscipit quam vehicula vitae. Maecenas ultricies tellus et lacus facilisis, id ullamcorper lacus porta. Nam nec quam sagittis, molestie mauris at, finibus lacus.
-              </p>
-              <p class="mb-4">Some extra data that I want to add. This project aims to revolutionize the way we interact with technology, making it more intuitive and accessible for everyone.</p>
-              <div class="flex flex-wrap gap-2">
-                  <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full text-xs">
-                      Technology used
-                  </span>
-                  <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full text-xs">
-                      Language used
-                  </span>
-                  <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full text-xs">
-                      Framework used
-                  </span>
-                  <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full text-xs">
-                      Tool used
-                  </span>
-              </div>
-          </div>
+        </div>
       </div>
-      <div class="lg:w-2/5 bg-amber-100 dark:bg-gray-700 h-64 lg:h-auto"></div>
+
+      <!-- este bloque es el que crece/encoge; si hay mucho texto, scrollea -->
+      <div class="flex-1 overflow-auto pr-2 scrollbox">
+        <h4 class="text-amber-700 dark:text-white text-lg lg:text-xl font-bold mb-4">
+          {subtitle}
+        </h4>
+
+        {description1 && <p class="mb-4">{description1}</p>}
+        {description2 && <p class="mb-2">{description2}</p>}
+      </div>
+
+      <!-- TAGS abajo, siempre visibles -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        {tags.map((t) => (
+          <span class="tag-pill">
+            <span class="tag-ico" set:html={iconFor(t)} />
+            <span class="tag-txt">{t}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- DERECHA: ocupa todo el alto y centra el frame -->
+    <div class="lg:w-1/2 relative overflow-hidden h-[22rem] sm:h-[26rem] lg:h-full">
+      <div class="card-bg card-bg--static"></div>
+      <div class="card-bg card-bg--active"></div>
+
+      <div class="relative z-10 w-full h-full p-6 lg:p-8 flex items-center justify-center">
+        <div class="media-frame">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            class="project-img"
+            loading="lazy"
+            decoding="async"
+            width="1280"
+            height="720"
+          />
+
+          {hasVideo && (
+            <video
+              class="project-video"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster={imageSrc}
+              data-video-src={videoSrc}
+              data-loaded="false"
+            />
+          )}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<style>
+  [data-project-card]{
+    content-visibility: auto;
+    contain-intrinsic-size: 980px 560px;
+    contain: layout paint style;
+  }
+
+  /* icon buttons */
+  .icon-btn{
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    display: block;
+    opacity: .9;
+  }
+
+  /* pills */
+  .tag-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: rgba(255,255,255,.70);
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+    font-size: 12px;
+    line-height: 1;
+    user-select: none;
+  }
+  :global(.dark) .tag-pill{
+    border-color: rgba(255,255,255,.10);
+    background: rgba(255,255,255,.06);
+    box-shadow: none;
+  }
+  .tag-ico{
+    width: 14px;
+    height: 14px;
+    display: inline-grid;
+    place-items: center;
+    opacity: .9;
+  }
+  .tag-ico :global(svg){
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    display: block;
+  }
+  .tag-txt{ font-weight: 600; opacity: .92; }
+
+  /* backgrounds */
+  [data-project-card] .card-bg {
+    position: absolute;
+    inset: 0;
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+  [data-project-card] .card-bg--static {
+    opacity: 1;
+    background:
+      radial-gradient(1200px 500px at 20% 20%, rgba(245, 158, 11, 0.22), transparent 60%),
+      radial-gradient(900px 600px at 80% 70%, rgba(236, 72, 153, 0.14), transparent 58%),
+      linear-gradient(135deg, rgba(251, 191, 36, 0.18), rgba(245, 158, 11, 0.10));
+    transform: scale(1);
+  }
+  [data-project-card] .card-bg--active {
+    opacity: 0;
+    background:
+      radial-gradient(900px 600px at 25% 35%, rgba(16, 185, 129, 0.18), transparent 62%),
+      radial-gradient(900px 600px at 75% 70%, rgba(236, 72, 153, 0.16), transparent 64%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.22), rgba(17, 24, 39, 0.10));
+    transform: scale(1.02);
+  }
+
+  /* media */
+  .media-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.20);
+    position: relative;
+    background: rgba(0,0,0,0.06);
+  }
+
+  .project-img,
+  .project-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 220ms ease;
+    object-position: center;
+  }
+
+  .project-img { object-fit: cover; opacity: 1; }
+
+  .project-video {
+    object-fit: contain;
+    background: rgba(0,0,0,0.10);
+    opacity: 0;
+  }
+
+  [data-project-card][data-inview="true"] .card-bg--static { opacity: 0; transform: scale(0.995); }
+  [data-project-card][data-inview="true"] .card-bg--active { opacity: 1; }
+
+  [data-project-card][data-has-video="true"][data-inview="true"] .project-img { opacity: 0; }
+  [data-project-card][data-has-video="true"][data-inview="true"] .project-video { opacity: 1; }
+  /* Scrollbar prolija (solo para el bloque de texto) */
+.scrollbox{
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0,0,0,.22) transparent;
+}
+
+:global(.dark) .scrollbox{
+  scrollbar-color: rgba(255,255,255,.22) transparent;
+}
+
+/* Chrome/Edge/Safari */
+.scrollbox::-webkit-scrollbar{
+  width: 10px;
+}
+
+.scrollbox::-webkit-scrollbar-track{
+  background: transparent;
+  border-radius: 999px;
+}
+
+.scrollbox::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,.18);
+  border-radius: 999px;
+  border: 3px solid transparent;      /* hace el thumb más “fino” */
+  background-clip: padding-box;        /* para que el borde sea aire */
+}
+
+.scrollbox::-webkit-scrollbar-thumb:hover{
+  background: rgba(0,0,0,.28);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+:global(.dark) .scrollbox::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.16);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+:global(.dark) .scrollbox::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,.26);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+  /* scroll adentro sin que quede feo */
+  .flex-1.overflow-auto { scrollbar-width: thin; }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-project-card] .card-bg,
+    .project-img,
+    .project-video {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
