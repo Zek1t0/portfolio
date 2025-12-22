@@ -4,7 +4,8 @@ const {
   subtitle = "Short subtitle",
   description1 = "",
   description2 = "",
-  tags = ["Astro", "HTML", "CSS", "JavaScript"],
+  tags,                 // <- sin default
+  meta = [],            // <- nuevo
   imageSrc = "/PFP.jpg",
   imageAlt = "Project preview",
   videoSrc = "",
@@ -12,17 +13,39 @@ const {
   repoUrl = "",
 } = Astro.props;
 
+const FALLBACK_TAGS = ["Astro", "HTML", "CSS", "JavaScript"];
+
+const splitTokens = (s) =>
+  String(s ?? "")
+    .split("·")
+    .map((x) => x.trim())
+    .filter(Boolean);
+
+// saca tags desde meta[].value (Technology/Language/Framework/Tool)
+const tagsFromMetaRaw = meta.flatMap((m) => splitTokens(m.value));
+
+// unique manteniendo orden
+const seen = new Set();
+const tagsFromMeta = tagsFromMetaRaw.filter((t) => (seen.has(t) ? false : (seen.add(t), true)));
+
+const tagsToRender =
+  Array.isArray(tags) && tags.length
+    ? tags
+    : tagsFromMeta.length
+      ? tagsFromMeta
+      : FALLBACK_TAGS;
+
 const hasVideo = Boolean(videoSrc && videoSrc.trim().length);
 
 const ICONS = {
-  Astro: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.7H21l-5.5 4 2.1 6.8L12 15.7 6.4 19.5 8.5 12.7 3 8.7h6.8L12 2z"/></svg>`,
+  Astro: `<svg width="85" height="107" viewBox="0 0 85 107" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.59 91.137c-4.834-4.42-6.246-13.704-4.232-20.43 3.492 4.241 8.33 5.584 13.342 6.343 7.737 1.17 15.336.732 22.523-2.804.822-.405 1.582-.943 2.48-1.489.675 1.957.85 3.932.615 5.943-.573 4.896-3.01 8.678-6.885 11.545-1.55 1.147-3.19 2.172-4.79 3.253-4.917 3.323-6.247 7.22-4.4 12.888.044.139.084.277.183.614-2.51-1.124-4.344-2.76-5.742-4.911-1.475-2.27-2.177-4.78-2.214-7.498-.019-1.322-.019-2.656-.197-3.96-.434-3.178-1.926-4.601-4.737-4.683-2.884-.084-5.166 1.699-5.771 4.507-.046.216-.113.429-.18.68zM0 69.587s14.314-6.973 28.668-6.973L39.49 29.12c.405-1.62 1.588-2.72 2.924-2.72s2.518 1.1 2.924 2.72L56.16 62.614c17 0 28.668 6.973 28.668 6.973S60.514 3.352 60.467 3.219C59.769 1.261 58.591 0 57.003 0H27.827c-1.588 0-2.718 1.261-3.464 3.22C24.311 3.35 0 69.586 0 69.586"/></svg>`,
   TailwindCSS: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9c1.5-2.6 3.7-3.9 6.5-3.9 4.2 0 5.3 3.1 7.5 3.9-1.5 2.6-3.7 3.9-6.5 3.9C10.3 12.8 9.2 9.7 7 9zm-4 6c1.5-2.6 3.7-3.9 6.5-3.9 4.2 0 5.3 3.1 7.5 3.9-1.5 2.6-3.7 3.9-6.5 3.9C6.3 18.8 5.2 15.7 3 15z"/></svg>`,
-  HTML: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7h2l-5-7 5-7H8zm8 0h-2l5 7-5 7h2l5-7-5-7z"/></svg>`,
-  CSS: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1 16-4 2-4-2L7 4zm3 4l.2 2H15l-.2-2H10zm.4 4l.2 2h3.4l-.1 1.4-1.7.7-1.7-.7-.1-1H9l.2 2.6 2.8 1.2 2.8-1.2.4-5H10.4z"/></svg>`,
-  JavaScript: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h8v18h-8V3zM3 3h8v18H3V3zm5 14a2 2 0 01-4 0h2a0 0 0 004 0H8z"/></svg>`,
+  HTML: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>HTML5 Logo Badge</title><path fill="#e34f26" d="M71 460 30 0h451l-41 460-185 52"/><path fill="#ef652a" d="m256 472 149-41 35-394H256"/><path fill="#ebebeb" d="M256 208h-75l-5-58h80V94H114l1 15 14 156h127zm0 147h-1l-63-17-4-45h-56l7 89 116 32h1z"/><path fill="#fff" d="M255 208v57h70l-7 73-63 17v59l116-32 1-10 13-149 2-15h-16zm0-114v56h137l1-12 3-29 1-15z"/></svg>`,
+  CSS: `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" aria-labelledby="css-logo-title css-logo-description"><title>CSS Logo</title><desc>A purple square with rounded corners and the letters CSS inside in white</desc><path fill="#639" d="M0 0h840a160 160 0 0 1 160 160v680a160 160 0 0 1-160 160H160A160 160 0 0 1 0 840z"/><path fill="#fff" d="M358.1 920c-64.23-.06-103.86-36.23-103.1-102.79V648.82c0-33.74 9.88-59.4 29.64-76.96 35.49-34.19 117.83-36.27 152.59.52 21.42 18.89 29.5 57.48 27.58 93.49h-73.72c.56-14.15-.19-35.58-8.51-43.65-10.81-14.63-39.36-12.91-46.91 2.32-4.64 8.26-6.96 20.49-6.96 36.67v146.18c0 30.65 10.65 46.15 31.96 46.49 9.96 0 17.53-3.62 22.68-10.85 7.19-8.58 8.31-27.58 7.73-41.32h73.72c5.04 70.07-36.32 119.16-106.71 118.29Zm234.04 0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93 29.92 8.35 57.17 32.99 55.27 10.99 0 18.73-3.44 23.2-10.33 8.5-12.59 10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48 11.34-137.4 31.18-36.92 112.61-38.62 143.82-.77 19.25 19.51 27.66 57.9 26.03 93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59 0-29.38 11.71-29.38 35.12.21 24.86 9.9 35.06 32.48 45.45 29.24 11.36 66.42 30.76 79.9 54.24 40.2 71.54 12.62 180.82-86.09 176.65Zm224.76 0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93 29.92 8.35 57.17 32.99 55.27 10.99 0 18.73-3.44 23.2-10.33 8.5-12.59 10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48 11.34-137.4 31.18-36.92 112.61-38.62 143.82-.77 19.25 19.51 27.66 57.9 26.03 93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59 0-29.38 11.71-29.38 35.12.21 24.86 9.9 35.06 32.48 45.45 29.24 11.36 66.42 30.76 79.9 54.24 40.2 71.54 12.62 180.82-86.09 176.65Z"/></svg>`,
+  JavaScript: `<img src="/mark/JS.svg" alt="" aria-hidden="true" />`,
   TypeScript: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v18H3V3zm4 5h6v2H11v8H9V10H7V8zm11 3c-.4-.7-1-.9-1.7-.9-.8 0-1.3.4-1.3 1 0 .7.5 1 1.8 1.4 1.8.6 2.8 1.4 2.8 3.1 0 1.8-1.4 3-3.6 3-1.8 0-3-.7-3.7-2l1.7-1c.5.9 1.1 1.2 2.1 1.2.9 0 1.5-.4 1.5-1.1 0-.8-.6-1.1-2-1.6-1.7-.6-2.7-1.3-2.7-3 0-1.6 1.2-2.8 3.2-2.8 1.4 0 2.4.5 3.1 1.7L18 11z"/></svg>`,
-  Django: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h4v9c0 3.6-2 6-6 7v-3c2.1-.8 2-2.1 2-4V3zm6 5h4v9.5c0 2.9-1.8 4.7-5 5.5v-3c1.7-.6 1-1.2 1-2.7V8z"/></svg>`,
-  Python: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 0 3 2 3 2v3H9c-2 0-3 1-3 3v2c0 2 2 3 3 3h3c2 0 3-1 3-3v-1h-3v1c0 1-.7 1-1 1H9c-.5 0-1-.4-1-1v-2c0-.7.3-1 1-1h7c2 0 3-1 3-3V5s0-2-3-2h-4zm0 2a1 1 0 110 2 1 1 0 010-2z"/></svg>`,
+  Django: `<img src="/mark/DJango.svg" alt="" aria-hidden="true" />`,
+  Python: `<img src="/mark/Py.svg" alt="" aria-hidden="true" />`,
   SQL: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c4.4 0 8 1.8 8 4v12c0 2.2-3.6 4-8 4s-8-1.8-8-4V6c0-2.2 3.6-4 8-4z"/></svg>`,
   Git: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 3.6l6.8 6.8a2 2 0 010 2.8l-6.8 6.8a2 2 0 01-2.8 0l-6.8-6.8a2 2 0 010-2.8l6.8-6.8a2 2 0 012.8 0z"/></svg>`,
   GitHub: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .6-3.6-1.3-3.6-1.3-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.7 1.2 2.4 1.4.1-.7.4-1.2.7-1.5-2.4-.3-4.9-1.2-4.9-5.3 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .9a10 10 0 015.4 0c2.1-1.2 3-.9 3-.9.6 1.5.2 2.6.1 2.9.7.8 1.1 1.7 1.1 2.9 0 4.1-2.5 5-4.9 5.3.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg>`,
@@ -93,7 +116,7 @@ const iconFor = (tag) => ICONS[tag] ?? ICONS.default;
 
       <!-- TAGS abajo, siempre visibles -->
       <div class="mt-6 flex flex-wrap gap-2">
-        {tags.map((t) => (
+        {tagsToRender.map((t) => (
           <span class="tag-pill">
             <span class="tag-ico" set:html={iconFor(t)} />
             <span class="tag-txt">{t}</span>
