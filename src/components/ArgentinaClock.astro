@@ -1,0 +1,64 @@
+<div class="flex items-center justify-center mb-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-cerise-600 dark:text-emerald-400" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+
+  <span id="ar-time" class="text-4xl font-bold text-gray-800 dark:text-gray-200">--:--</span>
+  <span class="ml-2 text-lg text-gray-600 dark:text-gray-400">GMT-3</span>
+</div>
+
+<p id="ar-date" class="text-lg text-gray-700 dark:text-gray-300">—</p>
+
+<script is:inline>
+  const TZ = "America/Argentina/Buenos_Aires";
+
+  function getTzOffsetMinutes(timeZone, date) {
+    // offset en minutos respecto a UTC (ej: GMT-3 => -180)
+    const dtf = new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      hour12: false,
+    });
+    const parts = dtf.formatToParts(date).filter(p => p.type !== "literal");
+    const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+    const asUTC = Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour, +map.minute, +map.second);
+    return Math.round((asUTC - date.getTime()) / 60000);
+  }
+
+  function formatDiff(diffMinutes) {
+    if (diffMinutes === 0) return "Same time as you";
+    const ahead = diffMinutes > 0;
+    const abs = Math.abs(diffMinutes);
+    const h = Math.floor(abs / 60);
+    const m = abs % 60;
+    const hm = m ? `${h}h ${m}m` : `${h}h`;
+    return `${hm} ${ahead ? "ahead of you" : "behind you"}`;
+  }
+
+  function update(){
+    const now = new Date();
+
+    // Hora Argentina
+    document.getElementById("ar-time").textContent =
+      new Intl.DateTimeFormat("en-US", {
+        timeZone: TZ, hour: "numeric", minute: "2-digit", hour12: true
+      }).format(now);
+
+    // Fecha Argentina
+    document.getElementById("ar-date").textContent =
+      new Intl.DateTimeFormat("en-US", {
+        timeZone: TZ, weekday: "long", month: "long", day: "numeric"
+      }).format(now);
+
+    // Diferencia vs usuario (dinámica por visitante)
+    const arOffset = getTzOffsetMinutes(TZ, now);
+    const userOffset = -now.getTimezoneOffset(); // minutos
+    const diffEl = document.getElementById("ar-diff");
+    if (diffEl) diffEl.textContent = formatDiff(arOffset - userOffset);
+  }
+
+  update();
+  setInterval(update, 30000);
+</script>
