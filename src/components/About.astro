@@ -86,31 +86,43 @@ import ArgentinaClock from './ArgentinaClock.astro';
   <ArgentinaClock />
 </section>
 <!-- Technologies Section -->
+<!-- Technologies Section -->
 <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9 shadow-lg" aria-labelledby="technologies-heading">
   <h2 id="technologies-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
       <span class="mr-2 text-3xl" aria-hidden="true">□</span> Technologies
   </h2>
-  <div class="grid grid-cols-4 gap-4">
-      <!-- Repeat this div 12 times for the technology icons -->
-      <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-    <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-    <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-    <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-    <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-    <div class="bg-amber-100 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center">
-        <img src="https://via.placeholder.com/48" alt="Technology icon 1" class="w-12 h-12">
-    </div>
-      <!-- ... Repeat 11 more times ... -->
+
+  <div class="grid grid-cols-5 gap-4">
+    <div class="tech-tile"><img src="/icons/html.svg" alt="HTML" class="tech-ico" /><span class="tech-name">HTML</span></div>
+    <div class="tech-tile"><img src="/icons/css.svg" alt="CSS" class="tech-ico" /><span class="tech-name">CSS</span></div>
+    <div class="tech-tile"><img src="/icons/javascript.svg" alt="JavaScript" class="tech-ico" /><span class="tech-name">JavaScript</span></div>
+    <div class="tech-tile"><img src="/icons/tailwindcss.svg" alt="TailwindCSS" class="tech-ico" /><span class="tech-name">TailwindCSS</span></div>
+    <div class="tech-tile"><img src="/icons/astro.svg" alt="Astro" class="tech-ico" /><span class="tech-name">Astro</span></div>
+    <div class="tech-tile"><img src="/icons/python.svg" alt="Python" class="tech-ico" /><span class="tech-name">Python</span></div>
+    <div class="tech-tile"><img src="/icons/django.svg" alt="Django" class="tech-ico" /><span class="tech-name">Django</span></div>
+    <div class="tech-tile"><img src="/icons/sql.svg" alt="SQL" class="tech-ico" /><span class="tech-name">SQL</span></div>
+    <div class="tech-tile"><img src="/icons/git.svg" alt="Git" class="tech-ico" /><span class="tech-name">Git</span></div>
+    <div class="tech-tile"><img src="/icons/github.svg" alt="GitHub" class="tech-ico" /><span class="tech-name">GitHub</span></div>
   </div>
+
+  <style>
+    .tech-tile{
+      border-radius: 14px;
+      padding: 14px 10px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    :global(.dark) .tech-tile{
+      background: rgba(148, 163, 184, 0.12);
+      border-color: rgba(255,255,255,.10);
+    }
+    .tech-ico{ width: 42px; height: 42px; }
+    .tech-name{ font-size: 14px; font-weight: 700; opacity: .9; }
+  </style>
 </section>
 </div>
