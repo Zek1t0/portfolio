@@ -1,6 +1,24 @@
 ---
 import ArgentinaClock from './ArgentinaClock.astro';
+
+const TECHS = [
+  { name: "HTML", file: "html.svg" },
+  { name: "CSS", file: "css.svg" },
+  { name: "JavaScript", file: "javascript.svg" },
+  { name: "TailwindCSS", file: "tailwindcss.svg" },
+  { name: "Astro", file: "astro.svg" },
+  { name: "Python", file: "python.svg" },
+  { name: "Django", file: "django.svg" },
+  { name: "Git", file: "git.svg" },
+  { name: "GitHub", file: "github.svg" },
+  { name: "SQL", file: "sql.svg" },
+];
+
+const ICONS = import.meta.glob("../icons/*.svg", { as: "raw", eager: true });
+
+const iconFor = (file) => ICONS[`../icons/${file}`] ?? "";
 ---
+
 <!-- About me -->
 <h1 class="text-5xl font-bold mb-14 text-cerise-600 dark:text-emerald-400">About me</h1>
 <div class="grid grid-cols-5 grid-rows-[repeat(12,minmax(0,auto))] content-start gap-6 max-w-6xl w-full mb-32">
@@ -76,8 +94,8 @@ import ArgentinaClock from './ArgentinaClock.astro';
   </ul>
 </section>
 <!-- Location Section -->
-<section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center justify-center text-center shadow-lg" aria-labelledby="location-heading">
-  <h2 id="location-heading" class="text-3xl font-bold mb-6 flex items-center self-start w-full text-cerise-600 dark:text-emerald-400">
+<section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center text-center shadow-lg" aria-labelledby="location-heading">
+  <h2 id="location-heading" class="text-3xl font-bold mb-4 flex items-center self-start w-full text-cerise-600 dark:text-emerald-400">
   <span class="mr-2 text-3xl" aria-hidden="true">□</span> Location
   </h2>
   <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Based in Argentina</h3>
@@ -86,43 +104,48 @@ import ArgentinaClock from './ArgentinaClock.astro';
   <ArgentinaClock />
 </section>
 <!-- Technologies Section -->
-<!-- Technologies Section -->
 <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9 shadow-lg" aria-labelledby="technologies-heading">
   <h2 id="technologies-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
       <span class="mr-2 text-3xl" aria-hidden="true">□</span> Technologies
   </h2>
-
   <div class="grid grid-cols-5 gap-4">
-    <div class="tech-tile"><img src="/icons/html.svg" alt="HTML" class="tech-ico" /><span class="tech-name">HTML</span></div>
-    <div class="tech-tile"><img src="/icons/css.svg" alt="CSS" class="tech-ico" /><span class="tech-name">CSS</span></div>
-    <div class="tech-tile"><img src="/icons/javascript.svg" alt="JavaScript" class="tech-ico" /><span class="tech-name">JavaScript</span></div>
-    <div class="tech-tile"><img src="/icons/tailwindcss.svg" alt="TailwindCSS" class="tech-ico" /><span class="tech-name">TailwindCSS</span></div>
-    <div class="tech-tile"><img src="/icons/astro.svg" alt="Astro" class="tech-ico" /><span class="tech-name">Astro</span></div>
-    <div class="tech-tile"><img src="/icons/python.svg" alt="Python" class="tech-ico" /><span class="tech-name">Python</span></div>
-    <div class="tech-tile"><img src="/icons/django.svg" alt="Django" class="tech-ico" /><span class="tech-name">Django</span></div>
-    <div class="tech-tile"><img src="/icons/sql.svg" alt="SQL" class="tech-ico" /><span class="tech-name">SQL</span></div>
-    <div class="tech-tile"><img src="/icons/git.svg" alt="Git" class="tech-ico" /><span class="tech-name">Git</span></div>
-    <div class="tech-tile"><img src="/icons/github.svg" alt="GitHub" class="tech-ico" /><span class="tech-name">GitHub</span></div>
+    {TECHS.map((t) => (
+      <div class="tech-tile">
+        <span class="tech-ico" set:html={iconFor(t.file)} aria-hidden="true" />
+        <span class="tech-name">{t.name}</span>
+      </div>
+    ))}
   </div>
-
-  <style>
-    .tech-tile{
-      border-radius: 14px;
-      padding: 14px 10px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(0,0,0,.08);
-    }
-    :global(.dark) .tech-tile{
-      background: rgba(148, 163, 184, 0.12);
-      border-color: rgba(255,255,255,.10);
-    }
-    .tech-ico{ width: 42px; height: 42px; }
-    .tech-name{ font-size: 14px; font-weight: 700; opacity: .9; }
-  </style>
 </section>
 </div>
+<style>
+  .tech-tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+
+  .tech-ico{
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech-ico :global(svg){
+    width: 36px;
+    height: 36px;
+    display: block;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  .tech-name{ font-size: 14px; font-weight: 700; opacity: .9; }
+</style>

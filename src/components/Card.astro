@@ -184,14 +184,18 @@ const iconFor = (tag) => {
     <div class="flex-1 p-8 lg:p-10 flex items-center justify-center relative">
       <div class="media-frame">
         {hasVideo ? (
-          <video
-            class="project-video"
-            muted
-            loop
-            playsinline
-            preload="none"
-            data-video-src={videoSrc}
-          />
+          <>
+            <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
+            <video
+              class="project-video"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster={imageSrc}
+              data-video-src={videoSrc}
+            />
+          </>
         ) : (
           <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
         )}
