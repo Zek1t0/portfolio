@@ -8,7 +8,7 @@ import ContactMe from "../components/ContactMe.astro";
 import "../Index.css";
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/Logo.png" />
@@ -57,23 +57,33 @@ import "../Index.css";
       <nav>
         <ul class="flex space-x-6">
           <li>
-            <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+            <a
+              href="#projects"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
               Projects
-            </button>
+            </a>
           </li>
+
           <li>
-            <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+            <a
+              href="#about"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
               About
-            </button>
+            </a>
           </li>
+
           <li>
-            <button class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300">
+            <a
+              href="#contact"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-transparent hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
               Contact
-            </button>
+            </a>
           </li>
         </ul>
       </nav>
-
       <div class="flex items-center space-x-4">
         <button class="text-sm font-medium text-gray-800 dark:text-gray-200 border border-gray-800 dark:border-gray-200 px-3 py-2 rounded hover:bg-amber-200 dark:hover:bg-gray-700 transition duration-300">
           ENG ▼
