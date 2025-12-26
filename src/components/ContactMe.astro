@@ -1,13 +1,67 @@
 ---
+const { lang = "en" } = Astro.props;
+
 const EMAIL = "duarte.ezequieldd@gmail.com";
-const SUBJECT = "Portfolio — Let's connect";
+const SUBJECT = lang === "es" ? "Portfolio — Conectemos" : "Portfolio — Let's connect";
 const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
+
+const copy = {
+  en: {
+    heading: "Let's Connect",
+    pill: "Open to connect",
+    pitch:
+      "Whether you have a cool project idea, a question, or just want to say hi, I'm always happy to chat!",
+    tags: ["Work proposals", "Networking", "Project ideas", "Friends"],
+    ctaPrimary: "Get in touch!",
+    ctaEmailTitle: "Send me an email",
+    socialNote: "If you prefer social media, follow me below — I’m always open to connect.",
+    rightTitle: "Let’s stay connected",
+    rightDesc: "Follow me for projects and updates, or reach out if you want to collaborate.",
+    bestChannel: "Best channel: Email",
+    rightMessage:
+      "Looking for a developer? Want to network? Have a project idea? Send me an email — I reply as soon as I can.",
+    reachOutTitle: "What you can reach out for",
+    bullets: [
+      "Job opportunities / freelance proposals",
+      "Networking and meeting new people",
+      "Collaborations and building projects",
+      "Just saying hi / making friends",
+    ],
+  },
+  es: {
+    heading: "Conectemos",
+    pill: "Abierto a conectar",
+    pitch:
+      "Si tenés una idea copada de proyecto, una pregunta o simplemente querés saludar, siempre estoy para charlar.",
+    tags: ["Propuestas de trabajo", "Networking", "Ideas de proyecto", "Amigos"],
+    ctaPrimary: "Contactame",
+    ctaEmailTitle: "Mandame un mail",
+    socialNote: "Si preferís redes, seguime abajo — siempre estoy abierto a conectar.",
+    rightTitle: "Sigamos en contacto",
+    rightDesc: "Seguime para ver proyectos y novedades, o escribime si querés colaborar.",
+    bestChannel: "Mejor canal: Email",
+    rightMessage:
+      "¿Buscás un dev? ¿Querés hacer networking? ¿Tenés una idea? Mandame un mail — respondo apenas pueda.",
+    reachOutTitle: "Para qué podés escribirme",
+    bullets: [
+      "Oportunidades laborales / propuestas freelance",
+      "Networking y conocer gente nueva",
+      "Colaboraciones y armar proyectos",
+      "Solo saludar / hacer amistad",
+    ],
+  },
+};
+
+const t = lang === "es" ? copy.es : copy.en;
 ---
 
-<section id="contact" class="w-full py-14 md:py-24 bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200">
+<section
+  id="contact"
+  class="w-full py-14 md:py-24 bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200"
+>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-10 text-cerise-600 dark:text-emerald-400">
-      Let's Connect
+      {t.heading}
     </h2>
 
     <div class="relative overflow-hidden rounded-3xl border border-amber-200/70 dark:border-gray-700 bg-white/70 dark:bg-gray-800/55 shadow-xl">
@@ -26,19 +80,19 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
               <i class="fas fa-paper-plane"></i>
             </span>
             <span class="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
-              Open to connect
+              {t.pill}
             </span>
           </div>
 
           <p class="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            Whether you have a cool project idea, a question, or just want to say hi, I'm always happy to chat!
+            {t.pitch}
           </p>
 
           <!-- Tags: un toque más finos -->
           <div class="mt-6 flex flex-wrap gap-2">
-            {["Work proposals", "Networking", "Project ideas", "Friends"].map((t) => (
+            {t.tags.map((tag) => (
               <span class="rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-gray-900/25 px-3 py-1 text-xs font-semibold text-gray-700 dark:text-gray-300">
-                {t}
+                {tag}
               </span>
             ))}
           </div>
@@ -50,13 +104,13 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
               class="inline-flex items-center justify-center gap-3 rounded-xl bg-cerise-600 dark:bg-emerald-600 px-6 py-3 font-semibold text-white hover:bg-cerise-500 dark:hover:bg-emerald-500 transition"
             >
               <i class="fas fa-envelope"></i>
-              Get in touch!
+              {t.ctaPrimary}
             </a>
 
             <a
               href={mailto}
               class="inline-flex items-center justify-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-cerise-600 dark:hover:text-emerald-400 transition"
-              title="Send me an email"
+              title={t.ctaEmailTitle}
             >
               <span class="opacity-90">{EMAIL}</span>
               <i class="fas fa-arrow-right"></i>
@@ -64,7 +118,7 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
           </div>
 
           <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            If you prefer social media, follow me below — I’m always open to connect.
+            {t.socialNote}
           </p>
         </div>
 
@@ -73,15 +127,15 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
           <div class="flex items-start justify-between gap-4">
             <div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                Let’s stay connected
+                {t.rightTitle}
               </h3>
               <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                Follow me for projects and updates, or reach out if you want to collaborate.
+                {t.rightDesc}
               </p>
             </div>
 
             <div class="shrink-0 rounded-xl bg-black/5 dark:bg-white/10 px-3 py-2 text-xs font-semibold text-gray-700 dark:text-gray-200">
-              Best channel: Email
+              {t.bestChannel}
             </div>
           </div>
 
@@ -110,34 +164,23 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
 
           <div class="mt-6 rounded-xl bg-black/5 dark:bg-white/10 p-4">
             <p class="text-sm text-gray-700 dark:text-gray-300">
-              Looking for a developer? Want to network? Have a project idea?
-              Send me an email — I reply as soon as I can.
+              {t.rightMessage}
             </p>
           </div>
 
           <div class="my-6 h-px bg-black/10 dark:bg-white/10"></div>
 
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            What you can reach out for
+            {t.reachOutTitle}
           </h4>
 
           <ul class="mt-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-            <li class="flex gap-2">
-              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-cerise-600 dark:bg-emerald-500"></span>
-              Job opportunities / freelance proposals
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-cerise-600 dark:bg-emerald-500"></span>
-              Networking and meeting new people
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-cerise-600 dark:bg-emerald-500"></span>
-              Collaborations and building projects
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-cerise-600 dark:bg-emerald-500"></span>
-              Just saying hi / making friends
-            </li>
+            {t.bullets.map((item) => (
+              <li class="flex gap-2">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-cerise-600 dark:bg-emerald-500"></span>
+                {item}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

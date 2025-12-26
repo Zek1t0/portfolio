@@ -1,63 +1,129 @@
 ---
 import Card from "./Card.astro";
 
-const projects = [
-  {
-    title: "Project 01 — Personal Portfolio",
-    subtitle: "Showcasing my work and skills",
-    description1:
-      "This is my personal portfolio website, which I actively use to present my projects, technical skills, and contact information. It’s designed to be clean, fast, and easy to navigate, with a strong focus on clarity and structure.",
-    description2:
-      "The site includes sections for my profile, skills, featured projects, and contact details. I implemented JavaScript scripts to improve interaction and user experience, keeping the codebase simple and maintainable. This project reflects how I approach front-end development: clear layouts, consistent styling, and practical solutions.",
-    meta: [
-      { label: "Technology used", value: "Astro" },
-      { label: "Language used", value: "HTML · CSS · JavaScript" },
-      { label: "Framework used", value: "Astro" },
-      { label: "Tool used", value: "" },
+const { lang = "en" } = Astro.props;
+
+const copy = {
+  en: {
+    heading: "My projects",
+    projects: [
+      {
+        title: "Project 01 — Personal Portfolio",
+        subtitle: "Showcasing my work and skills",
+        description1:
+          "This is my personal portfolio website, which I actively use to showcase my projects and experience. It is designed to be clean and easy to navigate, with a strong focus on clarity and structure.",
+        description2:
+          "The site includes sections for my profile, skills, featured projects, and contact details. I implemented JavaScript scripts to improve interaction and created a consistent UI throughout: clear layouts, consistent styling, and practical solutions.",
+        meta: [
+          { label: "Technology used", value: "Astro" },
+          { label: "Language used", value: "HTML · CSS · JavaScript" },
+          { label: "Framework used", value: "Astro" },
+          { label: "Tool used", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog.mp4",
+      },
+
+      {
+        title: "Project 02 — Comedor Luna",
+        subtitle: "Real website for a community food project",
+        description1:
+          "Comedor Luna is a real website currently in use by a local community food project. The goal was to build a simple site that presents information in a simple and organized way.",
+        description2:
+          "I built the site with a responsive layout, section-based navigation, and a strong focus on readability and mobile usability. This was a real-world website with real users and practical requirements.",
+        meta: [
+          { label: "Technology used", value: "Astro · TailwindCSS" },
+          { label: "Language used", value: "HTML · CSS · JavaScript" },
+          { label: "Framework used", value: "Astro" },
+          { label: "Tool used", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog2.mp4",
+      },
+
+      {
+        title: "Project 03 — Travel Blog",
+        subtitle: "Full-stack blog application (team project)",
+        description1:
+          "This project is a full-stack travel blog developed as part of a group project. It includes user roles (admin, editor, and reader), allowing different levels of interaction with the platform.",
+        description2:
+          "The application supports full CRUD functionality for posts and typical blog features. The project helped me gain experience working with back-end logic, databases, and team-based development.",
+        meta: [
+          { label: "Technology used", value: "Python · Django · SQL" },
+          { label: "Language used", value: "Python · HTML · CSS" },
+          { label: "Framework used", value: "Django" },
+          { label: "Tool used", value: "Teamwork" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "",
+      },
     ],
-    imageSrc: "/Logo.png",
-    videoSrc: "/preview-blog.mp4",
   },
 
-  {
-    title: "Project 02 — Comedor Luna",
-    subtitle: "Real website for a community food project",
-    description1:
-      "Comedor Luna is a real website currently in use by a local community food initiative. The goal was to create a clear and accessible site that presents information in a simple and organized way.",
-    description2:
-      "I built the site with a responsive layout, section-based navigation, and reusable components. Special attention was given to readability, visual hierarchy, and mobile usability, ensuring the content works well on all devices. This project represents my experience working on a real-world website with real users and practical requirements.",
-    meta: [
-      { label: "Technology used", value: "Astro · TailwindCSS" },
-      { label: "Language used", value: "HTML · CSS · JavaScript" },
-      { label: "Framework used", value: "Astro" },
-      { label: "Tool used", value: "" },
-    ],
-    imageSrc: "/Logo.png",
-    videoSrc: "/preview-blog2.mp4",
-  },
+  es: {
+    heading: "Mis proyectos",
+    projects: [
+      {
+        title: "Proyecto 01 — Portfolio personal",
+        subtitle: "Mostrando mi trabajo y mis habilidades",
+        description1:
+          "Este es mi sitio de portfolio personal, que uso activamente para mostrar mis proyectos y experiencia. La idea es que sea limpio y fácil de navegar, con un enfoque fuerte en claridad y estructura.",
+        description2:
+          "El sitio incluye secciones de perfil, habilidades, proyectos destacados y contacto. Implementé scripts en JavaScript para mejorar la interacción y cuidé la UI en general: layouts claros, estilo consistente y soluciones prácticas.",
+        meta: [
+          { label: "Tecnología usada", value: "Astro" },
+          { label: "Lenguajes usados", value: "HTML · CSS · JavaScript" },
+          { label: "Framework usado", value: "Astro" },
+          { label: "Herramienta usada", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog.mp4",
+      },
 
-  {
-    title: "Project 03 — Travel Blog",
-    subtitle: "Full-stack blog application (team project)",
-    description1:
-      "This project is a full-stack travel blog developed as part of a team. It includes user authentication and multiple roles (visitor, member, contributor), allowing different levels of interaction with the platform.",
-    description2:
-      "The application supports full CRUD functionality for posts and comments, along with filtering options by category, date, and alphabetical order. The project helped me gain experience working with back-end logic, databases, and team-based development.",
-    meta: [
-      { label: "Technology used", value: "Python · Django · SQL" },
-      { label: "Language used", value: "Python · HTML · CSS" },
-      { label: "Framework used", value: "Django" },
-      { label: "Tool used", value: "Teamwork" },
+      {
+        title: "Proyecto 02 — Comedor Luna",
+        subtitle: "Sitio real para un comedor comunitario",
+        description1:
+          "Comedor Luna es un sitio real que está en uso por un comedor local. El objetivo fue armar un sitio simple que presente la información de forma ordenada y fácil de entender.",
+        description2:
+          "Hice el sitio con diseño responsivo, navegación por secciones y foco en legibilidad y usabilidad en mobile. Es un proyecto del mundo real, con usuarios reales y requisitos concretos.",
+        meta: [
+          { label: "Tecnología usada", value: "Astro · TailwindCSS" },
+          { label: "Lenguajes usados", value: "HTML · CSS · JavaScript" },
+          { label: "Framework usado", value: "Astro" },
+          { label: "Herramienta usada", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog2.mp4",
+      },
+
+      {
+        title: "Proyecto 03 — Blog de viajes",
+        subtitle: "Aplicación full-stack (proyecto en equipo)",
+        description1:
+          "Este proyecto es un blog de viajes full-stack desarrollado como parte de un trabajo grupal. Incluye roles de usuario (admin, editor y lector), permitiendo distintos niveles de interacción con la plataforma.",
+        description2:
+          "La app soporta CRUD completo para posts y funcionalidades típicas de un blog. El proyecto me ayudó a ganar experiencia conectando front con lógica de back-end, base de datos y laburo en equipo.",
+        meta: [
+          { label: "Tecnología usada", value: "Python · Django · SQL" },
+          { label: "Lenguajes usados", value: "Python · HTML · CSS" },
+          { label: "Framework usado", value: "Django" },
+          { label: "Herramienta usada", value: "Teamwork" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "",
+      },
     ],
-    imageSrc: "/Logo.png",
-    videoSrc: "",
   },
-];
+};
+
+const t = lang === "es" ? copy.es : copy.en;
+const projects = t.projects;
 ---
 
 <section id="projects" class="w-full max-w-7xl mx-auto px-4 mb-40">
   <h2 class="font-roboto text-4xl font-bold mb-14 text-center text-cerise-600 dark:text-emerald-400">
-    My projects
+    {t.heading}
   </h2>
 
   <div class="space-y-24">

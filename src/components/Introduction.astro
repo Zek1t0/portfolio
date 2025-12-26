@@ -1,27 +1,45 @@
+---
+const { lang = "en" } = Astro.props;
+
+const copy = {
+  en: {
+    profileAlt: "Profile photo",
+    heyIm: "Hey! I'm",
+    blurbHtml: `Focused on building <strong>responsive and maintainable web interfaces</strong> using <strong>HTML, CSS, JavaScript, Astro, and React</strong>, with a solid foundation in <strong>Python, Django, and SQL</strong>. Currently looking for my <strong>first professional opportunity</strong> to contribute to real projects and grow in a production environment.`,
+    downloadCv: "Download CV",
+  },
+  es: {
+    profileAlt: "Foto de perfil",
+    heyIm: "¡Hola! Soy",
+    blurbHtml: `Enfocado en crear <strong>interfaces web responsivas y mantenibles</strong> usando <strong>HTML, CSS, JavaScript, Astro y React</strong>, con una base sólida en <strong>Python, Django y SQL</strong>. Hoy estoy buscando mi <strong>primera oportunidad profesional</strong> para aportar en proyectos reales y crecer en un entorno de producción.`,
+    downloadCv: "Descargar CV",
+  },
+};
+
+const t = lang === "es" ? copy.es : copy.en;
+---
+
 <!-- Introduction -->
         <div class="text-center max-w-3xl mx-auto px-4 mb-40 mt-16">
   <img
-      src="\PFP.jpg"
-      alt="Profile"
+      src="/PFP.jpg"
+      alt={t.profileAlt}
       width="200"
       height="200"
       class="rounded-full mx-auto mb-8"
     />
     <div class=" font-sans text-5xl font-bold text-balance mb-4">
-      Hey! I'm <span id="name-container" class="text-cerise-600 dark:text-emerald-400">Duarte Ezequiel</span>
+      {t.heyIm} <span id="name-container" class="text-cerise-600 dark:text-emerald-400">Duarte Ezequiel</span>
   </div>
   <h2 class="text-3xl mb-6 font-mono">
       &lt;<strong class="text-cerise-600 dark:text-emerald-400">Web</strong> Developer/&gt;
   </h2>
-  <p class="font-rubik mb-8 text-xl text-gray-600 dark:text-gray-400">
-    Focused on building <strong>responsive and maintainable web interfaces</strong> using
-    <strong>HTML, CSS, JavaScript, Astro, and React</strong>, with a solid foundation in
-    <strong>Python, Django, and SQL</strong>.
-    Currently looking for my <strong>first professional opportunity</strong> to contribute to real projects and grow in a production environment.
-  </p>
+
+  <p class="font-rubik mb-8 text-xl text-gray-600 dark:text-gray-400" set:html={t.blurbHtml}></p>
+
   <button class=" font-sans bg-transparent hover:bg-cerise-600 text-cerise-600 dark:text-emerald-400 dark:hover:bg-emerald-600 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border border-cerise-600 dark:border-emerald-400 hover:border-transparent rounded mb-6 transition duration-300">
-    Download CV
-</button>
+    {t.downloadCv}
+ </button>
 
   <div class="flex justify-center space-x-4">
       <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">

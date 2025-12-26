@@ -1,0 +1,23 @@
+---
+const DEFAULT_LANG = "en";
+---
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0;url=/${DEFAULT_LANG}/`} />
+    <title>Redirecting…</title>
+    <script is:inline>
+      (() => {
+        const lang = "en";
+        const hash = window.location.hash || "";
+        window.location.replace(`/${lang}/${hash}`);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <a href={`/${DEFAULT_LANG}/`}>Go to site</a>
+    </noscript>
+  </body>
+</html>

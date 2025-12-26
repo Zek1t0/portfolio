@@ -1,0 +1,253 @@
+---
+import About from "../../components/About.astro";
+import Introduction from "../../components/Introduction.astro";
+import Projects from "../../components/Projects.astro";
+import ContactMe from "../../components/ContactMe.astro";
+
+// bundlear tu css (en vez de linkear a /src/... que en prod suele romper)
+import "../../Index.css";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "en" } },
+    { params: { lang: "es" } },
+  ];
+}
+
+const langParam = String(Astro.params.lang ?? "en").toLowerCase();
+const lang = langParam === "es" ? "es" : "en";
+
+const copy = {
+  en: {
+    pageTitle: "portfolio",
+    nav: { projects: "Projects", about: "About", contact: "Contact" },
+    langLabel: "EN",
+    langMenu: { en: "English", es: "Español" },
+    footer: { rights: "All rights reserved.", deployed: "Deployed on" },
+  },
+  es: {
+    pageTitle: "portfolio",
+    nav: { projects: "Proyectos", about: "Sobre mí", contact: "Contacto" },
+    langLabel: "ES",
+    langMenu: { en: "English", es: "Español" },
+    footer: { rights: "Todos los derechos reservados.", deployed: "Deploy en" },
+  },
+};
+
+const t = copy[lang];
+---
+
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="light dark" />
+    <title>{t.pageTitle}</title>
+
+    <!-- Tema antes del primer paint (evita flash) -->
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("color-theme");
+          const prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const isDark = stored === "dark" || (!stored && prefersDark);
+          if (isDark) document.documentElement.classList.add("dark");
+        } catch (_) {}
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Roboto+Mono:wght@100..700&family=Roboto:wght@400;500;700;900&family=Rubik:wght@300..900&display=swap"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
+    </noscript>
+  </head>
+
+  <body class="font-rubik min-h-screen bg-amber-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col transition-colors duration-300">
+    <header class="flex justify-between items-center p-6 w-full max-w-7xl mx-auto">
+      <nav>
+        <ul class="flex space-x-6">
+          <li>
+            <a
+              href="#projects"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-amber-100 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
+              {t.nav.projects}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-amber-100 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
+              {t.nav.about}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-amber-100 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 px-3 py-2 rounded transition duration-300"
+            >
+              {t.nav.contact}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <!-- Language dropdown -->
+        <div class="relative">
+          <button
+            id="lang-toggle"
+            class="text-sm font-medium text-gray-800 dark:text-gray-200 border border-amber-200 dark:border-gray-700 bg-amber-100 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 transition duration-300 px-3 py-2 rounded"
+            aria-haspopup="true"
+            aria-expanded="false"
+            type="button"
+          >
+            {t.langLabel} ▼
+          </button>
+
+          <div
+            id="lang-menu"
+            class="hidden absolute right-0 mt-2 w-40 rounded-xl border border-amber-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg overflow-hidden z-50"
+            role="menu"
+          >
+            <a
+              data-lang-base="/en/"
+              href="/en/"
+              class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
+              role="menuitem"
+            >
+              {t.langMenu.en}
+            </a>
+            <a
+              data-lang-base="/es/"
+              href="/es/"
+              class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
+              role="menuitem"
+            >
+              {t.langMenu.es}
+            </a>
+          </div>
+        </div>
+
+        <!-- Theme toggle (igual que tu setup) -->
+        <button id="theme-toggle" class="text-gray-800 dark:text-gray-200 bg-amber-100 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 rounded-full p-2 transition duration-300">
+          <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center w-full">
+      <Introduction lang={lang} />
+      <Projects lang={lang} />
+      <About lang={lang} />
+      <ContactMe lang={lang} />
+
+      <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-amber-200 dark:border-gray-700">
+        <p>
+          © <span id="current-year"></span> Duarte Ezequiel. {t.footer.rights}
+          <br />
+          {t.footer.deployed} <strong>Vercel</strong> ❤️.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Language menu behavior (keeps hash on switch) -->
+    <script is:inline>
+      (() => {
+        const btn = document.getElementById("lang-toggle");
+        const menu = document.getElementById("lang-menu");
+        if (!btn || !menu) return;
+
+        const setExpanded = (v) => {
+          btn.setAttribute("aria-expanded", v ? "true" : "false");
+          menu.classList.toggle("hidden", !v);
+        };
+
+        const applyHashToLinks = () => {
+          const hash = window.location.hash || "";
+          menu.querySelectorAll("a[data-lang-base]").forEach((a) => {
+            const base = a.getAttribute("data-lang-base");
+            if (!base) return;
+            a.setAttribute("href", base + hash);
+          });
+        };
+
+        applyHashToLinks();
+
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          setExpanded(!isOpen);
+        });
+
+        document.addEventListener("click", () => setExpanded(false));
+        window.addEventListener("hashchange", applyHashToLinks, { passive: true });
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") setExpanded(false);
+        });
+      })();
+    </script>
+
+    <!-- tu script del theme toggle -->
+    <script is:inline>
+      const themeToggleButton = document.getElementById("theme-toggle");
+      const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+      const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+
+      function syncIcons() {
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+          themeToggleLightIcon.classList.remove("hidden");
+          themeToggleDarkIcon.classList.add("hidden");
+        } else {
+          themeToggleLightIcon.classList.add("hidden");
+          themeToggleDarkIcon.classList.remove("hidden");
+        }
+      }
+
+      function setTheme(theme) {
+        const isDark = theme === "dark";
+        document.documentElement.classList.toggle("dark", isDark);
+        localStorage.setItem("color-theme", isDark ? "dark" : "light");
+        syncIcons();
+      }
+
+      syncIcons();
+
+      themeToggleButton.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.contains("dark");
+        setTheme(isDark ? "light" : "dark");
+      });
+
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

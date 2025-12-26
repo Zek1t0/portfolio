@@ -1,6 +1,8 @@
 ---
 import ArgentinaClock from './ArgentinaClock.astro';
 
+const { lang = "en" } = Astro.props;
+
 const TECHS = [
   { name: "HTML", file: "html.svg" },
   { name: "CSS", file: "css.svg" },
@@ -15,108 +17,173 @@ const TECHS = [
 ];
 
 const ICONS = import.meta.glob("../icons/*.svg", { as: "raw", eager: true });
-
 const iconFor = (file) => ICONS[`../icons/${file}`] ?? "";
+
+const copy = {
+  en: {
+    title: "About me",
+
+    workTitle: "At Work",
+    workP1: `I’m currently looking for my <strong>first professional opportunity</strong>, and I bring a mindset built on
+      <strong>learning fast</strong>, <strong>asking the right questions</strong>, and <strong>shipping improvements</strong>.
+      I enjoy working in teams where expectations are clear and feedback is normal—not personal.`,
+    workP2: `My focus is simple: <strong>build reliable UI</strong>, keep things <strong>maintainable</strong>, and make progress in small,
+      consistent steps. I care about <strong>clean structure</strong>, readable code, and communicating early when something is blocked.`,
+
+    personalTitle: "My personal side",
+    personalP1: `If I had to define myself in three words: <strong>curious</strong>, <strong>resilient</strong>, and <strong>reliable</strong>.
+      I like understanding how things work—so I don’t just copy solutions, I learn the “why” behind them.`,
+    personalP2: `I used to be quieter socially, so I intentionally worked on communication: <strong>listening well</strong>,
+      being honest about what I know (and what I don’t), and collaborating without ego.
+      When problems show up, I stay calm, break them down, and keep moving.`,
+    badges: {
+      dogs: "Dogs",
+      terere: "Tereré",
+      calisthenics: "Calisthenics",
+    },
+
+    certTitle: "Certifications",
+    certs: [
+      "Informatorio - Stage 1 / Stage 2",
+      "English Advanced C1 - EF SET",
+      "Introduction to Python - Boot.dev",
+      "JavaScript Algorithms and Data Structures - freecodecamp.org",
+    ],
+
+    locationTitle: "Location",
+    basedIn: "Based in Argentina",
+
+    techTitle: "Technologies",
+  },
+
+  es: {
+    title: "Sobre mí",
+
+    workTitle: "En el trabajo",
+    workP1: `Hoy estoy buscando mi <strong>primera oportunidad profesional</strong>, y tengo una mentalidad enfocada en
+      <strong>aprender rápido</strong>, <strong>hacer buenas preguntas</strong> y <strong>entregar mejoras</strong>.
+      Me gusta laburar en equipos donde las expectativas están claras y el feedback es normal—sin drama.`,
+    workP2: `Mi foco es simple: <strong>armar UI confiable</strong>, que sea <strong>mantenible</strong>, y avanzar en pasos chicos pero constantes.
+      Me importa la <strong>estructura limpia</strong>, el código legible y avisar a tiempo cuando algo está trabado.`,
+
+    personalTitle: "Mi lado personal",
+    personalP1: `Si tuviera que definirme en tres palabras: <strong>curioso</strong>, <strong>resiliente</strong> y <strong>confiable</strong>.
+      Me gusta entender cómo funcionan las cosas—no copio soluciones porque sí: aprendo el “por qué”.`,
+    personalP2: `Antes era más callado socialmente, así que trabajé a propósito la comunicación: <strong>escuchar bien</strong>,
+      ser honesto con lo que sé (y lo que no) y colaborar sin ego.
+      Cuando aparecen problemas, me mantengo tranquilo, los desarmo y sigo avanzando.`,
+    badges: {
+      dogs: "Perros",
+      terere: "Tereré",
+      calisthenics: "Calistenia",
+    },
+
+    certTitle: "Certificaciones",
+    certs: [
+      "Informatorio - Etapa 1 / Etapa 2",
+      "Inglés Avanzado C1 - EF SET",
+      "Introducción a Python - Boot.dev",
+      "JavaScript Algorithms and Data Structures - freecodecamp.org",
+    ],
+
+    locationTitle: "Ubicación",
+    basedIn: "En Argentina",
+
+    techTitle: "Tecnologías",
+  },
+};
+
+const t = lang === "es" ? copy.es : copy.en;
 ---
 
 <!-- About me -->
-<h1 id="about" class="text-5xl font-bold mb-14 text-cerise-600 dark:text-emerald-400">About me</h1>
+<h1 id="about" class="text-5xl font-bold mb-14 text-cerise-600 dark:text-emerald-400">{t.title}</h1>
+
 <div class="grid grid-cols-5 grid-rows-[repeat(12,minmax(0,auto))] content-start gap-6 max-w-6xl w-full mb-32">
-    <!-- At Work Section -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-6 shadow-lg" aria-labelledby="work-heading">
+  <!-- At Work Section -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-6 shadow-lg" aria-labelledby="work-heading">
     <h2 id="work-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-        <span class="mr-2 text-3xl" aria-hidden="true">□</span> At Work
+      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.workTitle}
     </h2>
 
-    <p class="text-xl mb-4 text-gray-700 dark:text-gray-300">
-        I’m currently looking for my <strong>first professional opportunity</strong>, and I bring a mindset built on
-        <strong>learning fast</strong>, <strong>asking the right questions</strong>, and <strong>shipping improvements</strong>.
-        I enjoy working in teams where expectations are clear and feedback is normal—not personal.
-    </p>
+    <p class="text-xl mb-4 text-gray-700 dark:text-gray-300" set:html={t.workP1}></p>
+    <p class="text-xl text-gray-700 dark:text-gray-300" set:html={t.workP2}></p>
+  </section>
 
-    <p class="text-xl text-gray-700 dark:text-gray-300">
-        My focus is simple: <strong>build reliable UI</strong>, keep things <strong>maintainable</strong>, and make progress in small,
-        consistent steps. I care about <strong>clean structure</strong>, readable code, and communicating early when something is blocked.
-    </p>
-    </section>
-
-    <!-- My personal side Section -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-8 col-start-4 row-start-1 shadow-lg" aria-labelledby="personal-heading">
+  <!-- My personal side Section -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-8 col-start-4 row-start-1 shadow-lg" aria-labelledby="personal-heading">
     <h2 id="personal-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-        <span class="mr-2 text-3xl" aria-hidden="true">□</span> My personal side
+      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.personalTitle}
     </h2>
 
-    <p class="mb-4 text-xl text-gray-700 dark:text-gray-300">
-        If I had to define myself in three words: <strong>curious</strong>, <strong>resilient</strong>, and <strong>reliable</strong>.
-        I like understanding how things work—so I don’t just copy solutions, I learn the “why” behind them.
-    </p>
+    <p class="mb-4 text-xl text-gray-700 dark:text-gray-300" set:html={t.personalP1}></p>
+    <p class="text-xl text-gray-700 dark:text-gray-300" set:html={t.personalP2}></p>
 
-    <p class="text-xl text-gray-700 dark:text-gray-300">
-        I used to be quieter socially, so I intentionally worked on communication: <strong>listening well</strong>,
-        being honest about what I know (and what I don’t), and collaborating without ego.
-        When problems show up, I stay calm, break them down, and keep moving.
-    </p>
     <div class="mt-8 flex items-end justify-center gap-10">
-    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center">
         <span class="text-5xl drop-shadow-sm">🐶</span>
         <span class="mt-3 inline-flex items-center gap-2 rounded-full bg-gray-900/40 px-4 py-2 text-sm font-semibold text-gray-100 dark:bg-black/30">
-        <span class="text-red-500">❤</span> Dogs
+          <span class="text-red-500">❤</span> {t.badges.dogs}
         </span>
-    </div>
+      </div>
 
-    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center">
         <span class="text-5xl drop-shadow-sm">🧉</span>
         <span class="mt-3 inline-flex items-center gap-2 rounded-full bg-gray-900/40 px-4 py-2 text-sm font-semibold text-gray-100 dark:bg-black/30">
-        <span class="text-red-500">❤</span> Tereré
+          <span class="text-red-500">❤</span> {t.badges.terere}
         </span>
-    </div>
+      </div>
 
-    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center">
         <span class="text-5xl drop-shadow-sm">🏋️</span>
         <span class="mt-3 inline-flex items-center gap-2 rounded-full bg-gray-900/40 px-4 py-2 text-sm font-semibold text-gray-100 dark:bg-black/30">
-        <span class="text-red-500">❤</span> Calisthenics
+          <span class="text-red-500">❤</span> {t.badges.calisthenics}
         </span>
-    </div>
-    </div>
-
-    </section>
-
-<!-- Languages Section -->
-<section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-2 col-start-1 row-start-7 shadow-lg" aria-labelledby="languages-heading">
-  <h2 id="languages-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> Certifications
-  </h2>
-  <ul class="list-disc list-inside text-xl text-gray-700 dark:text-gray-300">
-      <li>Informatorio - Etapa1: / Etapa2:</li>
-      <li>English Advanced C1 - EFSET</li>
-      <li>Introduction to Python - Boot.dev</li>
-      <li>JavaScript Algorithms and Data Structures - freecodecamp.org</li>
-  </ul>
-</section>
-<!-- Location Section -->
-<section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center text-center shadow-lg" aria-labelledby="location-heading">
-  <h2 id="location-heading" class="text-3xl font-bold mb-4 flex items-center self-start w-full text-cerise-600 dark:text-emerald-400">
-  <span class="mr-2 text-3xl" aria-hidden="true">□</span> Location
-  </h2>
-  <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Based in Argentina</h3>
-  <p id="ar-diff" class="text-sm mb-6 text-gray-600 dark:text-gray-400">—</p>
-  <div class="w-full h-px bg-amber-200 dark:bg-white mb-6"></div>
-  <ArgentinaClock />
-</section>
-<!-- Technologies Section -->
-<section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9 shadow-lg" aria-labelledby="technologies-heading">
-  <h2 id="technologies-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> Technologies
-  </h2>
-  <div class="grid grid-cols-5 gap-4">
-    {TECHS.map((t) => (
-      <div class="tech-tile">
-        <span class="tech-ico" set:html={iconFor(t.file)} aria-hidden="true" />
-        <span class="tech-name">{t.name}</span>
       </div>
-    ))}
-  </div>
-</section>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-2 col-start-1 row-start-7 shadow-lg" aria-labelledby="certifications-heading">
+    <h2 id="certifications-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
+      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.certTitle}
+    </h2>
+
+    <ul class="list-disc list-inside text-xl text-gray-700 dark:text-gray-300">
+      {t.certs.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <!-- Location Section -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center text-center shadow-lg" aria-labelledby="location-heading">
+    <h2 id="location-heading" class="text-3xl font-bold mb-4 flex items-center self-start w-full text-cerise-600 dark:text-emerald-400">
+      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.locationTitle}
+    </h2>
+
+    <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t.basedIn}</h3>
+    <p id="ar-diff" class="text-sm mb-6 text-gray-600 dark:text-gray-400">—</p>
+
+    <div class="w-full h-px bg-amber-200 dark:bg-white mb-6"></div>
+
+    <!-- (le pasamos lang para que después lo traduzcamos también) -->
+    <ArgentinaClock lang={lang} />
+  </section>
+
+  <!-- Technologies Section -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9 shadow-lg" aria-labelledby="technologies-heading">
+    <h2 id="technologies-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
+      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.techTitle}
+    </h2>
+
+    <div class="grid grid-cols-5 gap-4">
+      {TECHS.map((tech) => (
+        <div class="tech-tile">
+          <span class="tech-ico" set:html={iconFor(tech.file)} aria-hidden="true" />
+          <span class="tech-name">{tech.name}</span>
+        </div>
+      ))}
+    </div>
+  </section>
 </div>
 <style>
   .tech-tile{
