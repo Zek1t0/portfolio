@@ -1,0 +1,17 @@
+---
+export const prerender = true;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <title>Redirecting…</title>
+    <script is:inline>
+      // conserva hash si alguien entra a "/#contact"
+      const hash = window.location.hash || "";
+      window.location.replace("/en/" + hash);
+    </script>
+  </head>
+  <body></body>
+</html>
