@@ -7,20 +7,25 @@ const copy = {
     heyIm: "Hey! I'm",
     blurbHtml: `Focused on building <strong>responsive and maintainable web interfaces</strong> using <strong>HTML, CSS, JavaScript, Astro, and React</strong>, with a solid foundation in <strong>Python, Django, and SQL</strong>. Currently looking for my <strong>first professional opportunity</strong> to contribute to real projects and grow in a production environment.`,
     downloadCv: "Download CV",
+    viewCv: "View CV",
   },
   es: {
     profileAlt: "Foto de perfil",
     heyIm: "¡Hola! Soy",
     blurbHtml: `Enfocado en crear <strong>interfaces web responsivas y mantenibles</strong> usando <strong>HTML, CSS, JavaScript, Astro y React</strong>, con una base sólida en <strong>Python, Django y SQL</strong>. Hoy estoy buscando mi <strong>primera oportunidad profesional</strong> para aportar en proyectos reales y crecer en un entorno de producción.`,
     downloadCv: "Descargar CV",
+    viewCv: "Ver CV",
   },
 };
 
 const t = lang === "es" ? copy.es : copy.en;
+
+const cvFile = lang === "es" ? "Ezequiel-Duarte-CV-ES.pdf" : "Ezequiel-Duarte-CV-EN.pdf";
+const cvHref = `${import.meta.env.BASE_URL}${cvFile}`;
 ---
 
 <!-- Introduction -->
-        <div class="text-center max-w-3xl mx-auto px-4 mb-40 mt-16">
+<div class="text-center max-w-3xl mx-auto px-4 mb-40 mt-16">
   <img
       src="/PFP.jpg"
       alt={t.profileAlt}
@@ -37,20 +42,55 @@ const t = lang === "es" ? copy.es : copy.en;
 
   <p class="font-rubik mb-8 text-xl text-gray-600 dark:text-gray-400" set:html={t.blurbHtml}></p>
 
-  <button class=" font-sans bg-transparent hover:bg-cerise-600 text-cerise-600 dark:text-emerald-400 dark:hover:bg-emerald-600 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border border-cerise-600 dark:border-emerald-400 hover:border-transparent rounded mb-6 transition duration-300">
-    {t.downloadCv}
- </button>
+  <div class="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+    <a
+      href={cvHref}
+      target="_blank"
+      rel="noreferrer"
+      class="font-sans bg-cerise-600 dark:bg-emerald-600 font-semibold text-white hover:bg-cerise-500 dark:hover:bg-emerald-500 py-2 px-4 rounded transition duration-300 inline-flex items-center justify-center"
+    >
+      {t.viewCv}
+    </a>
+
+    <a
+      href={cvHref}
+      download={cvFile}
+      class="font-sans bg-transparent hover:bg-cerise-600 text-cerise-600 dark:text-emerald-400 dark:hover:bg-emerald-600 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border border-cerise-600 dark:border-emerald-400 hover:border-transparent rounded transition duration-300 inline-flex items-center justify-center"
+    >
+      {t.downloadCv}
+    </a>
+  </div>
+
+
 
   <div class="flex justify-center space-x-4">
-      <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
-          <i class="fab fa-github fa-lg"></i>
-      </a>
-      <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
-          <i class="fab fa-linkedin fa-lg"></i>
-      </a>
-      <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
-          <i class="far fa-envelope fa-lg"></i>
-      </a>
+    <a
+      href="https://github.com/Zek1t0"
+      target="_blank"
+      rel="noreferrer"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      title="GitHub"
+    >
+      <i class="fab fa-github fa-lg"></i>
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/ezequiel-duarte/"
+      target="_blank"
+      rel="noreferrer"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      title="LinkedIn"
+    >
+      <i class="fab fa-linkedin fa-lg"></i>
+    </a>
+
+    <a
+      href="mailto:duarte.ezequieldd@gmail.com?subject=Portfolio%20%E2%80%94%20Conectemos"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      title="Enviarme un mail"
+    >
+      <i class="far fa-envelope fa-lg"></i>
+    </a>
   </div>
 </div>
 

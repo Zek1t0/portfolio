@@ -94,6 +94,15 @@ const copy = {
 };
 
 const t = lang === "es" ? copy.es : copy.en;
+
+const SECTION_ICONS = {
+  work: `<svg width="800" height="800" viewBox="0 0 48 48" version="1" xmlns="http://www.w3.org/2000/svg"><path fill="#424242" d="M27 7h-6c-1.7 0-3 1.3-3 3v3h2v-3c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v3h2v-3c0-1.7-1.3-3-3-3"/><path fill="#e65100" d="M40 43H8c-2.2 0-4-1.8-4-4V15c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v24c0 2.2-1.8 4-4 4"/><path fill="#ff6e40" d="M40 28H8c-2.2 0-4-1.8-4-4v-9c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v9c0 2.2-1.8 4-4 4"/><path fill="#fff3e0" d="M26 26h-4c-.6 0-1-.4-1-1v-2c0-.6.4-1 1-1h4c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1"/></svg>`,
+  personal: `<svg width="800" height="800" viewBox="0 0 24 24" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><path d="M21 20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 6 6 0 0 1 6-6h6a6 6 0 0 1 6 6m-9-8a5 5 0 1 0-5-5 5 5 0 0 0 5 5" style="fill:#0080FE"/></svg>`,
+  cert: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.517 491.517" xml:space="preserve"><ellipse transform="rotate(225 45.842 45.841)" style="fill:#ebf0f3" cx="45.842" cy="45.841" rx="28.232" ry="58.343"/><path style="fill:#d5d6db" d="M404.945 487.458 4.688 87.201C27.85 110.363 110.362 27.85 87.201 4.689l400.256 400.257c23.163 23.161-59.35 105.674-82.512 82.512"/><path style="fill:#e56353" d="m319.196 236.685-45.837-45.837c-27.618 37.978-44.509 54.87-82.512 82.512l45.834 45.833c36.278-27.014 55.528-46.213 82.515-82.508"/><path style="fill:#d15241" d="m187.113 367.715-10.856-34.456-34.455-10.855 49.045-49.045 45.311 45.311z"/></svg>`,
+  location: `<svg width="800px" height="800px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M128 757.333333a384 138.666667 0 1 0 768 0 384 138.666667 0 1 0-768 0Z" fill="#90CAF9" /><path d="M512 128c-129.6 0-234.666667 103.637333-234.666667 231.466667C277.333333 487.317333 512 789.333333 512 789.333333s234.666667-302.016 234.666667-429.866666C746.666667 231.637333 641.6 128 512 128z m0 341.333333a106.666667 106.666667 0 1 1 0-213.333333 106.666667 106.666667 0 0 1 0 213.333333z" fill="#FF3D00" /></svg>`,
+  tech: `<svg width="800" height="800" viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg" class="si-glyph si-glyph-code"><title>815</title><path d="M11.74 11.993a.7.7 0 0 0 .493-.195l3.479-3.316a.644.644 0 0 0 0-.939l-3.479-3.318a.72.72 0 0 0-.984 0 .643.643 0 0 0 0 .938l2.987 2.85-2.987 2.848a.643.643 0 0 0 0 .938.7.7 0 0 0 .491.194m-7.439-.11a.73.73 0 0 1-.497-.19L.287 8.425a.62.62 0 0 1 0-.923l3.517-3.268a.74.74 0 0 1 .995 0 .624.624 0 0 1 0 .924l-3.02 2.805 3.02 2.804a.626.626 0 0 1 0 .926.74.74 0 0 1-.498.19m2.384 3.006a.67.67 0 0 0 .503-.51L9.934 1.885a.636.636 0 0 0-.488-.768.66.66 0 0 0-.77.514L5.93 14.125a.636.636 0 0 0 .755.764" class="si-glyph-fill" fill="currentColor"/></svg>`,
+};
+
 ---
 
 <!-- About me -->
@@ -103,7 +112,7 @@ const t = lang === "es" ? copy.es : copy.en;
   <!-- At Work Section -->
   <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-6 shadow-lg" aria-labelledby="work-heading">
     <h2 id="work-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.workTitle}
+      <span class="mr-2 text-3xl h2-ico" set:html={SECTION_ICONS.work} aria-hidden="true"></span> {t.workTitle}
     </h2>
 
     <p class="text-xl mb-4 text-gray-700 dark:text-gray-300" set:html={t.workP1}></p>
@@ -113,7 +122,7 @@ const t = lang === "es" ? copy.es : copy.en;
   <!-- My personal side Section -->
   <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-8 col-start-4 row-start-1 shadow-lg" aria-labelledby="personal-heading">
     <h2 id="personal-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.personalTitle}
+      <span class="mr-2 text-3xl h2-ico" set:html={SECTION_ICONS.personal} aria-hidden="true"></span> {t.personalTitle}
     </h2>
 
     <p class="mb-4 text-xl text-gray-700 dark:text-gray-300" set:html={t.personalP1}></p>
@@ -146,7 +155,7 @@ const t = lang === "es" ? copy.es : copy.en;
   <!-- Certifications Section -->
   <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-2 col-start-1 row-start-7 shadow-lg" aria-labelledby="certifications-heading">
     <h2 id="certifications-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.certTitle}
+      <span class="mr-2 text-3xl h2-ico" set:html={SECTION_ICONS.cert} aria-hidden="true"></span> {t.certTitle}
     </h2>
 
     <ul class="list-disc list-inside text-xl text-gray-700 dark:text-gray-300">
@@ -157,7 +166,7 @@ const t = lang === "es" ? copy.es : copy.en;
   <!-- Location Section -->
   <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-2 row-span-5 col-start-1 row-start-9 flex flex-col items-center text-center shadow-lg" aria-labelledby="location-heading">
     <h2 id="location-heading" class="text-3xl font-bold mb-4 flex items-center self-start w-full text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.locationTitle}
+      <span class="mr-2 text-3xl h2-ico" set:html={SECTION_ICONS.location} aria-hidden="true"></span> {t.locationTitle}
     </h2>
 
     <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t.basedIn}</h3>
@@ -172,7 +181,7 @@ const t = lang === "es" ? copy.es : copy.en;
   <!-- Technologies Section -->
   <section class="bg-white dark:bg-gray-800 rounded-lg p-6 col-span-3 row-span-5 col-start-3 row-start-9 shadow-lg" aria-labelledby="technologies-heading">
     <h2 id="technologies-heading" class="text-3xl font-bold mb-4 flex items-center text-cerise-600 dark:text-emerald-400">
-      <span class="mr-2 text-3xl" aria-hidden="true">□</span> {t.techTitle}
+      <span class="mr-2 text-3xl h2-ico" set:html={SECTION_ICONS.tech} aria-hidden="true"></span> {t.techTitle}
     </h2>
 
     <div class="grid grid-cols-5 gap-4">
@@ -215,4 +224,17 @@ const t = lang === "es" ? copy.es : copy.en;
   }
 
   .tech-name{ font-size: 14px; font-weight: 700; opacity: .9; }
+
+  .h2-ico{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .h2-ico :global(svg){
+    width: 1em;
+    height: 1em;
+    display: block;
+  }
 </style>

@@ -5,6 +5,12 @@ const EMAIL = "duarte.ezequieldd@gmail.com";
 const SUBJECT = lang === "es" ? "Portfolio — Conectemos" : "Portfolio — Let's connect";
 const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}`;
 
+const SOCIAL = {
+  instagram: "https://www.instagram.com/_zeki_to/",
+  linkedin: "https://www.linkedin.com/in/ezequiel-duarte/",
+  github: "https://github.com/Zek1t0",
+};
+
 const copy = {
   en: {
     heading: "Let's Connect",
@@ -30,7 +36,7 @@ const copy = {
   },
   es: {
     heading: "Conectemos",
-    pill: "Abierto a conectar",
+    pill: "Hablemos!",
     pitch:
       "Si tenés una idea copada de proyecto, una pregunta o simplemente querés saludar, siempre estoy para charlar.",
     tags: ["Propuestas de trabajo", "Networking", "Ideas de proyecto", "Amigos"],
@@ -141,26 +147,37 @@ const t = lang === "es" ? copy.es : copy.en;
 
           <!-- Tus iconos (tal cual) -->
           <div class="mt-5 flex space-x-4">
-            <a href="#" class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
+            <a
+              href={SOCIAL.instagram}
+              target="_blank"
+              rel="noreferrer"
+              class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+            >
               <i class="fab fa-instagram fa-lg"></i>
               <span class="sr-only">Instagram</span>
             </a>
 
-            <a href="#" class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
+            <a
+              href={SOCIAL.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+            >
               <i class="fab fa-linkedin fa-lg"></i>
               <span class="sr-only">LinkedIn</span>
             </a>
 
-            <a href="#" class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
+            <a
+              href={SOCIAL.github}
+              target="_blank"
+              rel="noreferrer"
+              class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+            >
               <i class="fab fa-github fa-lg"></i>
               <span class="sr-only">GitHub</span>
             </a>
-
-            <a href="#" class="text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors">
-              <i class="fab fa-twitter fa-lg"></i>
-              <span class="sr-only">Twitter</span>
-            </a>
           </div>
+
 
           <div class="mt-6 rounded-xl bg-black/5 dark:bg-white/10 p-4">
             <p class="text-sm text-gray-700 dark:text-gray-300">

@@ -7,8 +7,28 @@ const copy = {
   en: {
     heading: "My projects",
     projects: [
+      
       {
-        title: "Project 01 — Personal Portfolio",
+        title: "Project 01 — Comedor Luna",
+        subtitle: "Real website for a community food project",
+        description1:
+        "Comedor Luna is a real website currently in use by a local community food project. The goal was to build a simple site that presents information in a simple and organized way.",
+        description2:
+        "I built the site with a responsive layout, section-based navigation, and a strong focus on readability and mobile usability. This was a real-world website with real users and practical requirements.",
+        meta: [
+          { label: "Technology used", value: "Astro · TailwindCSS" },
+          { label: "Language used", value: "HTML · CSS · JavaScript" },
+          { label: "Framework used", value: "Astro" },
+          { label: "Tool used", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog2.mp4",
+        liveUrl: "https://zek1t0.github.io/comedor-luna/",
+        repoUrl: "https://github.com/Zek1t0/comedor-luna",
+      },
+      
+      {
+        title: "Project 02 — Personal Portfolio",
         subtitle: "Showcasing my work and skills",
         description1:
           "This is my personal portfolio website, which I actively use to showcase my projects and experience. It is designed to be clean and easy to navigate, with a strong focus on clarity and structure.",
@@ -22,23 +42,8 @@ const copy = {
         ],
         imageSrc: "/Logo.png",
         videoSrc: "/preview-blog.mp4",
-      },
-
-      {
-        title: "Project 02 — Comedor Luna",
-        subtitle: "Real website for a community food project",
-        description1:
-          "Comedor Luna is a real website currently in use by a local community food project. The goal was to build a simple site that presents information in a simple and organized way.",
-        description2:
-          "I built the site with a responsive layout, section-based navigation, and a strong focus on readability and mobile usability. This was a real-world website with real users and practical requirements.",
-        meta: [
-          { label: "Technology used", value: "Astro · TailwindCSS" },
-          { label: "Language used", value: "HTML · CSS · JavaScript" },
-          { label: "Framework used", value: "Astro" },
-          { label: "Tool used", value: "" },
-        ],
-        imageSrc: "/Logo.png",
-        videoSrc: "/preview-blog2.mp4",
+        liveUrl: "http://duarteezequiel-portfolio.vercel.app/",
+        repoUrl: "https://github.com/Zek1t0/portfolio",
       },
 
       {
@@ -56,6 +61,8 @@ const copy = {
         ],
         imageSrc: "/Logo.png",
         videoSrc: "",
+        liveUrl: "https://sudonostalgia.pythonanywhere.com/",
+        repoUrl: "https://github.com/Ahresenal/Info-2025-grupo-2",
       },
     ],
   },
@@ -64,7 +71,26 @@ const copy = {
     heading: "Mis proyectos",
     projects: [
       {
-        title: "Proyecto 01 — Portfolio personal",
+        title: "Proyecto 01 — Comedor Luna",
+        subtitle: "Sitio real para un comedor comunitario",
+        description1:
+          "Comedor Luna es un sitio real que está en uso por un negocio local. El objetivo fue armar un sitio simple que presente la información de forma ordenada y fácil de entender.",
+        description2:
+          "Hice el sitio con diseño responsivo, navegación por secciones y foco en legibilidad y usabilidad en mobile. Es un proyecto del mundo real, con usuarios reales y requisitos concretos.",
+        meta: [
+          { label: "Tecnología usada", value: "Astro · TailwindCSS" },
+          { label: "Lenguajes usados", value: "HTML · CSS · JavaScript" },
+          { label: "Framework usado", value: "Astro" },
+          { label: "Herramienta usada", value: "" },
+        ],
+        imageSrc: "/Logo.png",
+        videoSrc: "/preview-blog2.mp4",
+        liveUrl: "https://zek1t0.github.io/comedor-luna/",
+        repoUrl: "https://github.com/Zek1t0/comedor-luna",
+      },
+
+      {
+        title: "Proyecto 02 — Portfolio personal",
         subtitle: "Mostrando mi trabajo y mis habilidades",
         description1:
           "Este es mi sitio de portfolio personal, que uso activamente para mostrar mis proyectos y experiencia. La idea es que sea limpio y fácil de navegar, con un enfoque fuerte en claridad y estructura.",
@@ -78,24 +104,10 @@ const copy = {
         ],
         imageSrc: "/Logo.png",
         videoSrc: "/preview-blog.mp4",
+        liveUrl: "http://duarteezequiel-portfolio.vercel.app/",
+        repoUrl: "https://github.com/Zek1t0/portfolio",
       },
 
-      {
-        title: "Proyecto 02 — Comedor Luna",
-        subtitle: "Sitio real para un comedor comunitario",
-        description1:
-          "Comedor Luna es un sitio real que está en uso por un comedor local. El objetivo fue armar un sitio simple que presente la información de forma ordenada y fácil de entender.",
-        description2:
-          "Hice el sitio con diseño responsivo, navegación por secciones y foco en legibilidad y usabilidad en mobile. Es un proyecto del mundo real, con usuarios reales y requisitos concretos.",
-        meta: [
-          { label: "Tecnología usada", value: "Astro · TailwindCSS" },
-          { label: "Lenguajes usados", value: "HTML · CSS · JavaScript" },
-          { label: "Framework usado", value: "Astro" },
-          { label: "Herramienta usada", value: "" },
-        ],
-        imageSrc: "/Logo.png",
-        videoSrc: "/preview-blog2.mp4",
-      },
 
       {
         title: "Proyecto 03 — Blog de viajes",
@@ -112,6 +124,8 @@ const copy = {
         ],
         imageSrc: "/Logo.png",
         videoSrc: "",
+        liveUrl: "https://sudonostalgia.pythonanywhere.com/",
+        repoUrl: "https://github.com/Ahresenal/Info-2025-grupo-2",
       },
     ],
   },
@@ -133,125 +147,116 @@ const projects = t.projects;
 
 
 <script is:inline>
-  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+  (() => {
+    const reduceMotion =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
-  const cards = Array.from(document.querySelectorAll("[data-project-card]"));
-  const ratios = new Map(cards.map((el) => [el, 0]));
+    const cards = Array.from(document.querySelectorAll("[data-project-card]"));
+    if (!cards.length) return;
 
-  let activeEl = null;
-  let rafId = 0;
+    const ratios = new Map(cards.map((el) => [el, 0]));
+    let activeEl = null;
+    let rafId = 0;
 
-  const ACTIVATE_AT = 0.50;   // entra en “foco”
-  const STAY_AT = 0.28;       // si ya está activa, se mantiene mientras no baje de esto
-  const UNLOAD_AT = 0.01;     // si está MUY fuera, liberamos video
-  const SWITCH_MARGIN = 0.08; // evita flicker cambiando entre 2 cards
+    const ACTIVATE_AT = 0.5;
+    const STAY_AT = 0.28;
+    const UNLOAD_AT = 0.01;
+    const SWITCH_MARGIN = 0.08;
 
-  function ensureVideoLoaded(videoEl) {
-    if (!videoEl) return;
-    if (videoEl.dataset.loaded === "true") return;
+    const getVideo = (card) => card.querySelector("video[data-video-src]");
 
-    const src = videoEl.dataset.videoSrc;
-    if (!src) return;
+    function ensureVideoLoaded(v) {
+      if (!v) return;
+      if (v.dataset.loaded === "true") return;
+      const src = v.dataset.videoSrc; // data-video-src => dataset.videoSrc
+      if (!src) return;
 
-    videoEl.src = src;                 // lazy real: recién acá aparece el src
-    videoEl.dataset.loaded = "true";
-    videoEl.load();
-  }
-
-  function unloadVideo(videoEl) {
-    if (!videoEl) return;
-    try { videoEl.pause(); } catch (_) {}
-
-    if (videoEl.dataset.loaded === "true") {
-      videoEl.removeAttribute("src");
-      videoEl.load();
-      videoEl.dataset.loaded = "false";
+      v.src = src;
+      v.dataset.loaded = "true";
+      v.load();
     }
-  }
 
-  function pauseVideo(videoEl) {
-    if (!videoEl) return;
-    try { videoEl.pause(); } catch (_) {}
-  }
+    function unloadVideo(v) {
+      if (!v) return;
+      if (v.dataset.loaded !== "true") return;
 
-  async function playVideo(videoEl) {
-    if (!videoEl || reduceMotion) return;
-    ensureVideoLoaded(videoEl);
-    try { await videoEl.play(); } catch (_) {}
-  }
-
-  function applyActive(nextActive) {
-    if (activeEl === nextActive) return;
-    activeEl = nextActive;
-
-    for (const el of cards) {
-      const isActive = el === activeEl;
-      el.dataset.inview = isActive ? "true" : "false";
-
-      const hasVideo = el.dataset.hasVideo === "true";
-      const videoEl = el.querySelector("video.project-video");
-      if (!hasVideo || !videoEl) continue;
-
-      if (isActive) {
-        playVideo(videoEl);
-      } else {
-        pauseVideo(videoEl);
-        const r = ratios.get(el) ?? 0;
-        if (r <= UNLOAD_AT) unloadVideo(videoEl);
-      }
+      try { v.pause(); } catch (_) {}
+      v.removeAttribute("src");
+      v.load();
+      v.dataset.loaded = "false";
     }
-  }
 
-  function pickBestActive() {
-    // si ya hay activa y todavía está bastante visible, mantenela
-    if (activeEl) {
-      const ar = ratios.get(activeEl) ?? 0;
-      if (ar >= STAY_AT) {
-        // permitimos cambio solo si hay otra significativamente más visible
-        let bestEl = activeEl;
-        let bestRatio = ar;
-
-        for (const [el, r] of ratios.entries()) {
-          if (r > bestRatio + SWITCH_MARGIN) {
-            bestRatio = r;
-            bestEl = el;
+    function pickBestActive() {
+      if (activeEl) {
+        const ar = ratios.get(activeEl) ?? 0;
+        if (ar >= STAY_AT) {
+          let bestEl = activeEl;
+          let bestRatio = ar;
+          for (const [el, r] of ratios.entries()) {
+            if (r > bestRatio + SWITCH_MARGIN) {
+              bestRatio = r;
+              bestEl = el;
+            }
           }
+          return bestEl;
         }
-        return bestEl;
+      }
+
+      let bestEl = null;
+      let bestRatio = 0;
+      for (const [el, r] of ratios.entries()) {
+        if (r > bestRatio) {
+          bestRatio = r;
+          bestEl = el;
+        }
+      }
+      return bestEl && bestRatio >= ACTIVATE_AT ? bestEl : null;
+    }
+
+    function applyActive(nextActive) {
+      // set data-inview para que el CSS de Card haga lo suyo
+      for (const c of cards) c.dataset.inview = c === nextActive ? "true" : "false";
+
+      // pausar el anterior
+      if (activeEl && activeEl !== nextActive) {
+        const prevV = getVideo(activeEl);
+        try { prevV?.pause(); } catch (_) {}
+      }
+
+      activeEl = nextActive;
+
+      // activar el nuevo
+      if (activeEl) {
+        const v = getVideo(activeEl);
+        ensureVideoLoaded(v);
+        if (v && !reduceMotion) v.play().catch(() => {});
+      }
+
+      // descargar los lejanos
+      for (const c of cards) {
+        if (c === activeEl) continue;
+        const r = ratios.get(c) ?? 0;
+        if (r <= UNLOAD_AT) unloadVideo(getVideo(c));
       }
     }
 
-    // si no hay activa (o quedó muy afuera), buscamos la mejor y la activamos si supera umbral
-    let bestEl = null;
-    let bestRatio = 0;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) ratios.set(e.target, e.intersectionRatio);
 
-    for (const [el, r] of ratios.entries()) {
-      if (r > bestRatio) {
-        bestRatio = r;
-        bestEl = el;
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+          rafId = 0;
+          applyActive(pickBestActive());
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-15% 0px -15% 0px",
+        threshold: [0, 0.1, 0.25, 0.4, 0.55, 0.75, 1],
       }
-    }
+    );
 
-    if (bestRatio >= ACTIVATE_AT) return bestEl;
-    return null;
-  }
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) ratios.set(e.target, e.intersectionRatio);
-
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = 0;
-        applyActive(pickBestActive());
-      });
-    },
-    {
-      root: null,
-      rootMargin: "-15% 0px -15% 0px",
-      threshold: [0, 0.1, 0.25, 0.4, 0.55, 0.75, 1],
-    }
-  );
-
-  cards.forEach((c) => io.observe(c));
+    cards.forEach((c) => io.observe(c));
+  })();
 </script>

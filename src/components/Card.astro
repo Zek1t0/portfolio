@@ -127,7 +127,7 @@ const iconFor = (tag) => {
                 aria-label="Repository"
                 title="Repository"
               >
-                <img class="icon-btn" src="/icons/github.svg" alt="" width="20" height="20" />
+                <span class="icon-btn" set:html={githubIcon} aria-hidden="true" />
               </a>
             )}
 
@@ -187,14 +187,14 @@ const iconFor = (tag) => {
           <>
             <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
             <video
-              class="project-video"
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster={imageSrc}
-              data-video-src={videoSrc}
-            />
+            class="project-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={imageSrc}
+            data-video-src={videoSrc}
+            ></video>
           </>
         ) : (
           <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
@@ -214,10 +214,29 @@ const iconFor = (tag) => {
   .icon-btn{
     width: 20px;
     height: 20px;
-    fill: currentColor;
     display: block;
     opacity: .9;
   }
+
+  /* si el icono ES un svg con class="icon-btn" */
+  :global(svg.icon-btn),
+  :global(svg.icon-btn *) {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  /* si el icono viene inline dentro de un span.icon-btn */
+  .icon-btn :global(svg),
+  .icon-btn :global(svg *) {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
 
   /* pills */
   .tag-pill{
