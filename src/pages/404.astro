@@ -1,0 +1,116 @@
+---
+export const prerender = true;
+
+import "../Index.css";
+
+const path = Astro.url.pathname ?? "/";
+const lang = path.startsWith("/en") ? "en" : "es"; // default es
+
+const t = {
+  es: {
+    meme: "MAMÁ, CORTASTE TOODA LA LOOOZ!",
+    notFound: "404 - página no encontrada",
+    home: "Ir al inicio",
+    homeHref: "/es/",
+  },
+  en: {
+    meme: "MAMÁ, CORTASTE TOODA LA LOOOZ!",
+    notFound: "404 - page not found",
+    home: "Go home",
+    homeHref: "/en/",
+  },
+}[lang];
+
+const VIDEO_WEBM = "/ricardo-ford-404.webm";
+const VIDEO_MP4 = "/ricardo-ford-404.mp4";
+---
+
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.notFound}</title>
+
+    <!-- Theme antes del paint -->
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("color-theme");
+          const prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const isDark = stored === "dark" || (!stored && prefersDark);
+          if (isDark) document.documentElement.classList.add("dark");
+        } catch (_) {}
+      })();
+    </script>
+
+    <!-- Fonts (ya las usás) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Rubik:wght@300..900&display=swap"
+    />
+  </head>
+
+  <body class="min-h-screen bg-amber-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex items-center justify-center p-6 transition-colors duration-300">
+    <main class="w-full max-w-4xl">
+      <section class="rounded-[40px] bg-white dark:bg-gray-800 border border-black/10 dark:border-white/10 shadow-2xl p-8 sm:p-12 text-center">
+        <h1 class="font-['Bangers'] text-4xl sm:text-6xl tracking-wider mb-8 text-gray-900 dark:text-gray-100">
+          {t.meme}
+        </h1>
+
+        <!-- Video (sin sonido) -->
+        <div class="flex justify-center">
+          <div class="w-full max-w-2xl">
+            <video
+            class="w-full rounded-2xl border border-black/10 dark:border-white/10 shadow-lg bg-black"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Ricardo Fort clip"
+            >
+                <source src="/ricardo-ford-404.webm" type="video/webm" />
+                <source src="/ricardo-ford-404.mp4" type="video/mp4" />
+                Tu navegador no soporta video.
+            </video>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+          <p class="text-xl sm:text-2xl font-semibold">
+            {t.notFound}
+          </p>
+
+          <a
+            href={t.homeHref}
+            class="inline-flex items-center justify-center rounded-2xl px-6 py-3 text-lg font-bold
+                   bg-rose-200 text-gray-900 border-2 border-gray-900
+                   hover:translate-y-[-1px] hover:shadow-md transition"
+          >
+            {t.home}
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Si el usuario tiene reduced motion, no rompemos las bolas con autoplay -->
+    <script is:inline>
+      (() => {
+        const v = document.getElementById("rf404");
+        const reduce =
+          window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        if (!v) return;
+
+        if (reduce) {
+          v.removeAttribute("autoplay");
+          v.setAttribute("controls", "");
+          try { v.pause(); } catch (_) {}
+        }
+      })();
+    </script>
+  </body>
+</html>
