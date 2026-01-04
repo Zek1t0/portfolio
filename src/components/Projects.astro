@@ -135,15 +135,16 @@ const t = lang === "es" ? copy.es : copy.en;
 const projects = t.projects;
 ---
 
-<section id="projects" class="w-full max-w-7xl mx-auto px-4 mb-40">
-  <h2 class="font-roboto text-4xl font-bold mb-14 text-center text-cerise-600 dark:text-emerald-400">
+<section id="projects" class="w-full max-w-7xl mx-auto px-4 mb-40 sm:mb-40">
+  <h2 class="font-roboto text-4xl sm:text-4xl font-bold mb-14 sm:mb-14 text-center text-cerise-600 dark:text-emerald-400">
     {t.heading}
   </h2>
 
-  <div class="space-y-24">
+  <div class="space-y-16 sm:space-y-24">
     {projects.map((p) => <Card {...p} />)}
   </div>
 </section>
+
 
 
 <script is:inline>

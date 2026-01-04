@@ -25,29 +25,34 @@ const cvHref = `${import.meta.env.BASE_URL}${cvFile}`;
 ---
 
 <!-- Introduction -->
-<div class="text-center max-w-3xl mx-auto px-4 mb-40 mt-16">
+<div class="text-center max-w-3xl mx-auto px-4 mt-10 sm:mt-16 mb-24 sm:mb-40">
   <img
-      src="/PFP.jpg"
-      alt={t.profileAlt}
-      width="200"
-      height="200"
-      class="rounded-full mx-auto mb-8"
-    />
-    <div class=" font-sans text-5xl font-bold text-balance mb-4">
-      {t.heyIm} <span id="name-container" class="text-cerise-600 dark:text-emerald-400">Duarte Ezequiel</span>
+    src="/PFP.jpg"
+    alt={t.profileAlt}
+    width="200"
+    height="200"
+    class="rounded-full mx-auto mb-6 sm:mb-8 w-40 h-40 sm:w-[200px] sm:h-[200px] object-cover"
+  />
+
+  <div class="font-sans font-bold text-balance mb-3 sm:mb-4 leading-tight text-4xl sm:text-5xl">
+    {t.heyIm} <span id="name-container" class="text-cerise-600 dark:text-emerald-400">Duarte Ezequiel</span>
   </div>
-  <h2 class="text-3xl mb-6 font-mono">
-      &lt;<strong class="text-cerise-600 dark:text-emerald-400">Web</strong> Developer/&gt;
+
+  <h2 class="font-mono mb-5 sm:mb-6 text-2xl sm:text-3xl leading-tight">
+    &lt;<strong class="text-cerise-600 dark:text-emerald-400">Web</strong> Developer/&gt;
   </h2>
 
-  <p class="font-rubik mb-8 text-xl text-gray-600 dark:text-gray-400" set:html={t.blurbHtml}></p>
+  <p
+    class="font-rubik mb-7 sm:mb-8 text-base sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
+    set:html={t.blurbHtml}
+  ></p>
 
   <div class="flex flex-col sm:flex-row gap-3 justify-center mb-6">
     <a
       href={cvHref}
       target="_blank"
       rel="noreferrer"
-      class="font-sans bg-cerise-600 dark:bg-emerald-600 font-semibold text-white hover:bg-cerise-500 dark:hover:bg-emerald-500 py-2 px-4 rounded transition duration-300 inline-flex items-center justify-center"
+      class="font-sans bg-cerise-600 dark:bg-emerald-600 font-semibold text-white hover:bg-cerise-500 dark:hover:bg-emerald-500 py-2.5 px-4 rounded transition duration-300 inline-flex items-center justify-center"
     >
       {t.viewCv}
     </a>
@@ -55,21 +60,20 @@ const cvHref = `${import.meta.env.BASE_URL}${cvFile}`;
     <a
       href={cvHref}
       download={cvFile}
-      class="font-sans bg-transparent hover:bg-cerise-600 text-cerise-600 dark:text-emerald-400 dark:hover:bg-emerald-600 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border border-cerise-600 dark:border-emerald-400 hover:border-transparent rounded transition duration-300 inline-flex items-center justify-center"
+      class="font-sans bg-transparent hover:bg-cerise-600 text-cerise-600 dark:text-emerald-400 dark:hover:bg-emerald-600 font-semibold hover:text-white dark:hover:text-white py-2.5 px-4 border border-cerise-600 dark:border-emerald-400 hover:border-transparent rounded transition duration-300 inline-flex items-center justify-center"
     >
       {t.downloadCv}
     </a>
   </div>
 
-
-
-  <div class="flex justify-center space-x-4">
+  <div class="flex justify-center gap-2 sm:gap-4">
     <a
       href="https://github.com/Zek1t0"
       target="_blank"
       rel="noreferrer"
-      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors p-2 rounded"
       title="GitHub"
+      aria-label="GitHub"
     >
       <i class="fab fa-github fa-lg"></i>
     </a>
@@ -78,70 +82,66 @@ const cvHref = `${import.meta.env.BASE_URL}${cvFile}`;
       href="https://www.linkedin.com/in/ezequiel-duarte/"
       target="_blank"
       rel="noreferrer"
-      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors p-2 rounded"
       title="LinkedIn"
+      aria-label="LinkedIn"
     >
       <i class="fab fa-linkedin fa-lg"></i>
     </a>
 
     <a
       href="mailto:duarte.ezequieldd@gmail.com?subject=Portfolio%20%E2%80%94%20Conectemos"
-      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors"
+      class="text-gray-600 dark:text-gray-400 hover:text-cerise-600 dark:hover:text-emerald-400 transition-colors p-2 rounded"
       title="Enviarme un mail"
+      aria-label="Email"
     >
       <i class="far fa-envelope fa-lg"></i>
     </a>
   </div>
 </div>
 
+<script>
+  const nameContainer = document.getElementById("name-container");
+  let displayName = "Duarte Ezequiel";
+  let currentName = "Duarte Ezequiel";
+  let intervalId;
 
-  <script>
-    const nameContainer = document.getElementById("name-container");
-    let displayName = "Duarte Ezequiel";
-    let currentName = "Duarte Ezequiel";
-    let intervalId;
+  function updateName() {
+    displayName = displayName === "Duarte Ezequiel" ? "Zekitø" : "Duarte Ezequiel";
+    let currentIndex = 0;
 
-    function updateName() {
-      displayName =
-        displayName === "Duarte Ezequiel" ? "Zekitø" : "Duarte Ezequiel";
-      let currentIndex = 0;
-
-      clearInterval(intervalId);
-      intervalId = setInterval(() => {
-        if (currentIndex >= displayName.length) {
-          currentName = displayName; // Asegurarse de que el nombre final sea correcto
-          renderName();
-          clearInterval(intervalId);
-          return;
-        }
-
-        const nextChar = displayName[currentIndex];
-        currentName = (currentName.slice(0, currentIndex) + nextChar).padEnd(
-          displayName.length,
-          " "
-        );
-        currentIndex++;
-
+    clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      if (currentIndex >= displayName.length) {
+        currentName = displayName;
         renderName();
-      }, 20);
-    }
+        clearInterval(intervalId);
+        return;
+      }
 
-    function renderName() {
-      nameContainer.innerHTML = displayName
-        .split("")
-        .map((char, index) => {
-          const currentChar = currentName[index] || " ";
-          const className = currentChar !== char ? "text-red-500" : "";
-          return `<span class="${className}">${currentChar === " " ? "&nbsp;" : currentChar}</span>`;
-        })
-        .join("");
-    }
+      const nextChar = displayName[currentIndex];
+      currentName = (currentName.slice(0, currentIndex) + nextChar).padEnd(displayName.length, " ");
+      currentIndex++;
 
-    function startNameChange() {
       renderName();
-      setInterval(updateName, 5000);
-    }
+    }, 20);
+  }
 
-    // Inicia el efecto
-    startNameChange();
-  </script>
+  function renderName() {
+    nameContainer.innerHTML = displayName
+      .split("")
+      .map((char, index) => {
+        const currentChar = currentName[index] || " ";
+        const className = currentChar !== char ? "text-red-500" : "";
+        return `<span class="${className}">${currentChar === " " ? "&nbsp;" : currentChar}</span>`;
+      })
+      .join("");
+  }
+
+  function startNameChange() {
+    renderName();
+    setInterval(updateName, 5000);
+  }
+
+  startNameChange();
+</script>

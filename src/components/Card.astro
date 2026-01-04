@@ -109,10 +109,10 @@ const iconFor = (tag) => {
     <div class="card-bg card-bg--active"></div>
 
     <!-- IZQUIERDA -->
-    <div class="flex-1 p-8 lg:p-10 h-full flex flex-col relative">
+    <div class="flex-1 p-5 sm:p-8 lg:p-10 h-full flex flex-col relative">
       <!-- header -->
       <div class="mb-4">
-        <div class="flex justify-between items-start gap-4">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4">
           <h3 class="text-3xl lg:text-4xl font-bold text-cerise-600 dark:text-emerald-400 leading-tight">
             {title}
           </h3>
@@ -123,7 +123,7 @@ const iconFor = (tag) => {
                 href={repoUrl}
                 target="_blank"
                 rel="noreferrer"
-                class="rounded-lg p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
+                class="rounded-lg p-3 sm:p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
                 aria-label="Repository"
                 title="Repository"
               >
@@ -136,11 +136,11 @@ const iconFor = (tag) => {
                 href={liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                class="rounded-lg p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
+                class="rounded-lg p-3 sm:p-2 hover:bg-black/5 dark:hover:bg-white/10 transition"
                 aria-label="Live"
                 title="Live"
               >
-                <svg class="icon-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" >
+                <svg class="icon-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4 9.3-9.3H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
                 </svg>
               </a>
@@ -150,7 +150,7 @@ const iconFor = (tag) => {
       </div>
 
       <!-- bloque scrolleable -->
-      <div class="flex-1 overflow-auto pr-2 scrollbox">
+      <div class="flex-none lg:flex-1 overflow-auto pr-0 sm:pr-2 scrollbox max-h-[34vh] sm:max-h-[38vh] lg:max-h-none">
         <h4 class="text-amber-700 dark:text-white text-lg lg:text-xl font-bold mb-4">
           {subtitle}
         </h4>
@@ -180,7 +180,7 @@ const iconFor = (tag) => {
     </div>
 
     <!-- DERECHA -->
-    <div class="flex-1 p-8 lg:p-10 flex items-center justify-center relative">
+    <div class="flex-1 p-4 sm:p-6 lg:p-10 flex items-center justify-center relative">
       <div class="media-frame">
         {hasVideo ? (
           <>
@@ -204,10 +204,11 @@ const iconFor = (tag) => {
 </div>
 
 <style>
+  @media (max-width: 1023px){
   [data-project-card]{
-    contain-intrinsic-size: 980px 560px;
-    contain: layout paint style;
+    contain-intrinsic-size: 420px 760px;
   }
+}
 
   /* icon buttons */
   .icon-btn{
@@ -365,7 +366,15 @@ const iconFor = (tag) => {
     border: 3px solid transparent;
     background-clip: padding-box;
   }
-
+  
+  @media (max-width: 639px){
+    .media-frame{
+      aspect-ratio: 5 / 3;  /* más alto => se ve más grande */
+    }
+    .project-video{
+    object-fit: cover; /* llena todo el frame, pero recorta */
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     [data-project-card] .card-bg,
     .project-img,

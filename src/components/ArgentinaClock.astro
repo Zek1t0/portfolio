@@ -38,11 +38,11 @@ const S = lang === "es" ? STRINGS.es : STRINGS.en;
     <polyline points="12 6 12 12 16 14"></polyline>
   </svg>
 
-  <span id="ar-time" class="text-4xl font-bold text-gray-800 dark:text-gray-200">--:--</span>
-  <span class="ml-2 text-lg text-gray-600 dark:text-gray-400">GMT-3</span>
+  <span id="ar-time" class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-gray-200">--:--</span>
+  <span class="ml-2 text-base sm:text-lg text-gray-600 dark:text-gray-400">GMT-3</span>
 </div>
 
-<p id="ar-date" class="text-lg text-gray-700 dark:text-gray-300">—</p>
+<p id="ar-date" class="text-base sm:text-lg text-gray-700 dark:text-gray-300">—</p>
 
 <script is:inline define:vars={{ TZ, LOCALE, S, lang }}>
   const use12h = lang === "en"; // en -> 12h, es -> 24h
