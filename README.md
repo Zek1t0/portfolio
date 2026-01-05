@@ -1,47 +1,79 @@
-# Astro Starter Kit: Minimal
+# 🚀 Personal Portfolio – Duarte Ezequiel (Zekito)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Portfolio personal desarrollado para presentar mis proyectos, experiencia práctica y habilidades como **Frontend Web Developer**.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+El objetivo de este sitio es mostrar **trabajo real**, no solo ejercicios o clones, con foco en código limpio, performance y buena experiencia de usuario.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+🔗 Live site:  
+http://duarteezequiel-portfolio.vercel.app/
+<img width="1920" height="1080" alt="Screenshot from 2026-01-05 03-19-52" src="https://github.com/user-attachments/assets/05b1739c-73b9-4b98-900d-b47060aea2dc" />
+---
 
-## 🚀 Project Structure
+## 🧑‍💻 Sobre mí
 
-Inside of your Astro project, you'll see the following folders and files:
+Soy desarrollador web frontend, enfocado en construir interfaces modernas, simples y funcionales.  
+Me interesa trabajar en proyectos reales, aprender constantemente y mejorar tanto a nivel técnico como humano.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Este portfolio centraliza:
+- Proyectos personales
+- Experiencia práctica
+- Información de contacto
+- Enlaces a repositorios y demos
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🛠️ Tecnologías utilizadas
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Astro
+- HTML5
+- CSS3
+- JavaScript
+- Tailwind CSS
+- Deploy en Vercel
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## 📂 Proyectos destacados
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### 🍽️ Comedor Luna
+Sitio web para un comedor real.
 
-## 👀 Want to learn more?
+- Diseño y desarrollo completo
+- Deploy en dominio propio
+- Optimización de performance
+- UI clara y accesible
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Web: https://www.comedorluna.com.ar/
+
+---
+
+### ✈️ Travel Blog
+Blog desarrollado como proyecto práctico.
+
+- Backend con Django
+- Sistema de posts y categorías
+- Formularios y comentarios
+- Deploy funcional
+
+Web: https://sudonostalgia.pythonanywhere.com/
+
+---
+
+## ✨ Características del portfolio
+
+- Diseño responsive
+- Navegación simple y clara
+- Modo claro / oscuro
+- Proyectos reales en producción
+- Código organizado y legible
+
+---
+
+## 📌 Instalación local (opcional)
+
+```bash
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
+pnpm install
+pnpm run dev
+
