@@ -22,7 +22,8 @@ const copy = {
           { label: "Tool used", value: "" },
         ],
         imageSrc: "/comedor-luna.jpg",
-        videoSrc: "/preview-blog2.mp4",
+        videoSrc: "/comedor-luna-preview.webm",
+        videoFallbackSrc: "/comedor-luna-preview.mp4",
         liveUrl: "https://zek1t0.github.io/comedor-luna/",
         repoUrl: "https://github.com/Zek1t0/comedor-luna",
       },
@@ -42,6 +43,7 @@ const copy = {
         ],
         imageSrc: "/personal-portfolio.png",
         videoSrc: "/preview-blog.mp4",
+        videoFallbackSrc: "",
         liveUrl: "http://duarteezequiel-portfolio.vercel.app/",
         repoUrl: "https://github.com/Zek1t0/portfolio",
       },
@@ -61,6 +63,7 @@ const copy = {
         ],
         imageSrc: "/travel-blog.jpg",
         videoSrc: "/travel-blog-preview.mp4",
+        videoFallbackSrc: "",
         liveUrl: "https://sudonostalgia.pythonanywhere.com/",
         repoUrl: "https://github.com/Ahresenal/Info-2025-grupo-2",
       },
@@ -84,7 +87,8 @@ const copy = {
           { label: "Herramienta usada", value: "" },
         ],
         imageSrc: "/comedor-luna.jpg",
-        videoSrc: "/preview-blog2.mp4",
+        videoSrc: "/comedor-luna-preview.webm",
+        videoFallbackSrc: "/comedor-luna-preview.mp4",
         liveUrl: "https://zek1t0.github.io/comedor-luna/",
         repoUrl: "https://github.com/Zek1t0/comedor-luna",
       },
@@ -104,6 +108,7 @@ const copy = {
         ],
         imageSrc: "/personal-portfolio.png",
         videoSrc: "/preview-blog.mp4",
+        videoFallbackSrc: "",
         liveUrl: "http://duarteezequiel-portfolio.vercel.app/",
         repoUrl: "https://github.com/Zek1t0/portfolio",
       },
@@ -124,6 +129,7 @@ const copy = {
         ],
         imageSrc: "/travel-blog.jpg",
         videoSrc: "/travel-blog-preview.mp4",
+        videoFallbackSrc: "",
         liveUrl: "https://sudonostalgia.pythonanywhere.com/",
         repoUrl: "https://github.com/Ahresenal/Info-2025-grupo-2",
       },
@@ -169,10 +175,26 @@ const projects = t.projects;
     function ensureVideoLoaded(v) {
       if (!v) return;
       if (v.dataset.loaded === "true") return;
-      const src = v.dataset.videoSrc; // data-video-src => dataset.videoSrc
-      if (!src) return;
 
-      v.src = src;
+      const src = (v.dataset.videoSrc || "").trim();                 // webm o mp4
+      const fb  = (v.dataset.videoFallbackSrc || "").trim();         // fallback mp4 (ideal)
+
+      if (!src && !fb) return;
+
+      const webmSource = v.querySelector('source[data-role="webm"]');
+      const mp4Source  = v.querySelector('source[data-role="mp4"]');
+
+      // limpiamos primero
+      webmSource?.removeAttribute("src");
+      mp4Source?.removeAttribute("src");
+
+      // asignamos según extensión (así también funciona si mandás mp4 como "src")
+      for (const s of [src, fb]) {
+        if (!s) continue;
+        if (s.toLowerCase().endsWith(".webm")) webmSource?.setAttribute("src", s);
+        else if (s.toLowerCase().endsWith(".mp4")) mp4Source?.setAttribute("src", s);
+      }
+
       v.dataset.loaded = "true";
       v.load();
     }
@@ -182,10 +204,12 @@ const projects = t.projects;
       if (v.dataset.loaded !== "true") return;
 
       try { v.pause(); } catch (_) {}
-      v.removeAttribute("src");
+
+      v.querySelectorAll("source").forEach((s) => s.removeAttribute("src"));
       v.load();
       v.dataset.loaded = "false";
     }
+
 
     function pickBestActive() {
       if (activeEl) {

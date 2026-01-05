@@ -26,6 +26,7 @@ const {
   imageSrc = "/PFP.jpg",
   imageAlt = "Project preview",
   videoSrc = "",
+  videoFallbackSrc = "",
   liveUrl = "",
   repoUrl = "",
 } = Astro.props;
@@ -58,7 +59,11 @@ const tagsToRender =
       ? tagsFromMeta
       : FALLBACK_TAGS;
 
-const hasVideo = Boolean(videoSrc && videoSrc.trim().length);
+const hasVideo = Boolean(
+  (videoSrc && videoSrc.trim().length) ||
+  (videoFallbackSrc && videoFallbackSrc.trim().length)
+);
+
 
 // Normaliza tags para matchear iconos
 const normalize = (t) =>
@@ -186,14 +191,18 @@ const iconFor = (tag) => {
           <>
             <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
             <video
-            class="project-video"
-            muted
-            loop
-            playsinline
-            preload="none"
-            poster={imageSrc}
-            data-video-src={videoSrc}
-            ></video>
+              class="project-video"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster={imageSrc}
+              data-video-src={videoSrc}
+              data-video-fallback-src={videoFallbackSrc}
+            >
+              <source data-role="webm" type="video/webm" />
+              <source data-role="mp4" type="video/mp4" />
+            </video>
           </>
         ) : (
           <img class="project-img" src={imageSrc} alt={imageAlt} loading="lazy" />
